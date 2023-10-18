@@ -1,0 +1,95 @@
+\section{Applications}
+
+We now describe how the above framework can be applied or adapted to DOO manipulation in three different environments, Pulling, Untangling, and Threading.
+
+\subsection{Pulling Environment}
+
+The Pulling environment contains a large hose attached to a wall. The scene is depicted in Figure \ref{fig:examples} C. The robot is initially not grasping the hose, and the head of the hose is out of the robot's reach. The goal region, shown as a purple sphere, is near the base of the robot on the floor. This environment requires regrasping to bring the keypoint to the goal, and demonstrates the behavior of the general method in the case where there are no skeletons, and no changes in the \signature{}.
+
+When applying Alg \ref{alg:pointReaching} in this environment, the robot initially chooses a grasp as far down the DOO as it can reach, due to the geodesic cost term in Equation \ref{eq:graspCost}. Then, the gripper pulls towards the goal due to the second term in the MPPI cost \eqref{eq:pointReachingCost}. This brings more of the DOO within reach. When the gripper reaches the goal, the cost cannot be decreased and the controller slows to a stop. At this point, trap detection triggers regrasp planning. Since the DOO is now closer, a plan is found that reaches closer to the tip ($\kp=1$) than before. Because the grasp is closer to the tip, the current \signature{} is not blocklisted. This repeats until the grasp is close enough to the tip that it can be brought to the goal region. In the Pulling environment, our method succeeded in 25/25 trials, where each trial differs in the initial DOO configuration and the random seed used for sampling in planning.
+
+\subsection{Untangling Environment}
+
+\begin{table}
+    \centering
+    \begin{tabular}{ccccc}
+        Method & Success & Wall Time (m) & Sim Time (m) \\ \hline
+        \signature{} (ours) & 22/25 & 12 (5) & 1.4 (1.1) \\
+        Always Blocklist & 22/25 & 14 (7) & 1.3 (1.0) \\
+        No \signature{} & 10/25 & 20 (10) & 2.0 (1.3) \\
+        TAMP50 & 15/25 & 142 (116) & 2.4 (1.7) \\
+        TAMP5 & 9/25 & 34 (22) & 1.8 (1.2) \\
+    \end{tabular}
+    \caption{Results in the Untangle environment. Times in minutes are for the completion of the task, where Sim Time does not include planning time. Standard deviations are given in parentheses.}
+    \label{tab:point_reaching}
+\end{table}
+
+The Untangle environment resembles a computer rack with a cable that needs to be plugged in. The scene is depicted in Figure \ref{fig:examples} A. One end of the DOO is fixed to the environment (e.g. plugged in elsewhere), and the robot is initially grasping some other location on the DOO. The robot often needs to regrasp several times in order to reach the goal. Unlike in the Pulling environment, the \signature{} can take on many different values depending on the configuration of the DOO and the grasp configuration. This demonstrates the utility of the \signature{} in planning when there is no goal \signature{}.
+
+We evaluate Alg \ref{alg:pointReaching} on this task, and compare to an ablation that omits the two terms using the \signature{} from Eq \ref{eq:graspCost}. We call this method \textit{No \signature{}}. This often results in greedy re-grasping of the keypoint. We also evaluate a version called \textit{Always Blocklist}, where we blocklist the current \signature{} every time a trap is detected. Finally, we compare our proposed method to a method inspired by task and motion planning (TAMP), where $H$ additional steps of MPPI are simulated for each candidate grasp during planning and the final goal cost is used in place of cost terms relying on the \signature{}. We test two versions of this method with $H=5$ and $H=50$. Success rates and trial times are shown in Table \ref{tab:point_reaching}. Trials vary in the initial configuration of the robot, grasp location, DOO configuration, in the size of the computer rack, and in the location of the goal.
+
+Methods using the \signature{} have the highest success rates and are faster than alternatives. \textit{Always Blocklist} has an equivalent success rate as the full proposed method, but prematurely abandons grasps that would lead to reaching the goal. Our method and the \textit{Always Blocklist} method each failed in 3 trials by trying too many unsuccessful grasps before $\maxIters$ was reached. The \textit{No \signature{}} ablation and both TAMP methods usually fail by greedily trying to grasp the keypoint. Without a very long horizon or the \signature{}, the planner often grasps with configurations that make reaching the goal impossible. The longer horizon used in $H=50$ helps alleviate this issue but is insufficient in many cases while also causing a 10x increase in planning time.
+
+\subsection{Threading Environment} 
+
+In the Threading environment, the objective is for the robot to thread the DOO through a series of fixtures in a specified order (e.g. "fixture 1, then fixture 2, then fixture 3"), after which it should bring the keypoint to a goal region. The threading is described by a series of goal signatures $\sig_1,\dots,\sig_N$. This skill could be applied to installing cable harnesses in a car or electrical wiring in a building. One end of the DOO is fixed to the environment, and the robot is initially grasping some other location on the DOO. This environment is depicted in Figure \ref{fig:examples} B.
+
+\begin{algorithm}[t]
+    \caption{DOO Threading with the \signature{}}\label{alg:threading}
+    \SetAlgoLined
+    \DontPrintSemicolon
+    $j = 1$ \tcp*{Threading subgoal index}
+    \For{$i < \maxIters$}{
+        \eIf{$j<N$ \tcp*{threading subgoals}}{
+           $\qvel = $MPPI$(\state,\sig_j, \goalCost)$ \\
+           $\state = f(\qvel)$ \tcp*{Execute and get state}
+            \If{{\color{green}disc penetrated}}{
+             $\locs^* = \planGrasp(\state, n_x,\graspCost, {\color{green}1})$ \\
+                \If{{\color{green} $\sig(\locs^*) == \sig_j$}}{
+                    ExecuteGraspChange$(\locs^*)$ \\
+                }
+            }
+            \If{trapped}{
+               $\locs^* = \planGrasp(\state, n_x, \graspCost, {\color{green}\loc-0.05})$ \\
+                ExecuteGraspChange$(\locs^*)$ \\
+            }
+            \If{{\color{green} $\sig(\state) == \sig_j$}}{
+                $j = j + 1$ \tcp*{next subgoal}
+            }
+        }{
+            $\qvel = $MPPI$(\state,\goalPoint, \goalCost)$ \\
+            $\state = f(\qvel)$ \tcp*{Execute and get state}
+            \If{$\goalPoint - p(\kp) < \goalRadius$}{
+                 break \\
+            }
+        }
+    }
+\end{algorithm}
+
+We extend Alg \ref{alg:pointReaching} for this task in several ways. First, we run it iteratively, looping over each of the three threading subgoals, then finally for the point reaching subgoal. Second, when using MPPI to reach a threading subgoal, we augment Eq \eqref{eq:pointReachingCost} with the magnetic-field cost proposed in \cite{Weifu}. This uses the formula $\sum_{j=1}^{n_i}\Phi(\sk_i^j,\sk_i^{j'}, r)$ from in Equation \eqref{eq:hsig} for the direction of the magnetic field, but where $r$ is the keypoint of the DOO. This causes the keypoint to follow virtual magnetic field lines through the fixture in the specified direction. Third, if a threading subgoal is reached, and the planner returns a grasp which does not match $\goalSig$, we reject it and continue running MPPI to push the cable further through the fixture. This happens when there is no feasible grasp matching $\goalSig$ due to obstacles or reachability issues. Furthermore, we also check $\goalSig$ after executing the grasp to ensure that any deviations that occurred when executing the grasp plan do not change the \signature{}. To check when a threading subgoal is reached, we use the disc penetration check from \cite{Weifu}. The goal signatures $\sig_1,\dots,\sig_N$ are used in the grasp planning (3rd term in Eq \eqref{eq:graspCost}), but the blocklist is not. Grasp sampling is restricted to alternating single-gripper grasps, which speeds up grasp planning. The keypoint location for grasp planning is also restricted. It is chosen to be the tip ($\kp=1$) when a threading subgoal is reached, and further down the DOO than the current grasp when stuck ($\kp=\loc-0.05$). The full Threading algorithm is shown in Alg \ref{alg:threading}, with the key differences highlighted in green.
+We compare our proposed method to the TAMP5 method described previously. In this environment, the TAMP method often chooses grasps that correctly thread through fixtures 1 and 2, because those grasps allow immediate progress towards the next subgoal. However, it often grasps incorrectly on fixture 3, which requires the robot to first reach further around and results in less immediate progress towards the next subgoal. We also adapted the method in \cite{Weifu} from a single floating gripper to our dual arm robot. As in our method, we use alternating single-gripper grasps. Instead of the more general trap detection method we use, this baseline checks the distance between the gripper and the fixture being threaded. This baseline fails similarly to the TAMP5 method, but additionally fails when MPPI is trapped but is outside the distance-to-fixture threshold. Success rates and trial times are shown in Table \ref{tab:threading}. Trials vary in the initial configuration of the robot, grasp location, DOO configuration, and in the positions of the fixtures. In the trials in which our method failed to complete the task, MPPI reached a joint configuration with one arm that prevented the other arm from grasping the DOO at or near the tip, as required by our method. This means the robot remained stuck until $\maxIters$ was reached.
+
+\begin{table}
+    \centering
+    \begin{tabular}{cccc}
+    % NOTE: these results came from the combination of:
+    % threading_ours_v5
+    % threading_tamp_v5
+    % threading_wang_v5
+    % threading_ours_v4
+    % threading_wang_v4
+    % threading_tamp5_v4
+        Method & Success & Wall Time (m) & Sim Time (m) \\ \hline
+        \signature{} & 42/50 & 8 (2) & 1.3 (0.4) \\
+        TAMP5 & 21/50 & 17 (3) & 1.3 (0.6) \\
+        Wang et al. \cite{Weifu} & 12/50 & 8 (3) & 1.0 (0.8) \\
+    \end{tabular}
+    \caption{Results on the Threading task.}
+    \label{tab:threading}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Real World Threading}
+
+We demonstrate a simplified version of the Threading task in the real world, as depicted in Figure \ref{fig:titleFig}. This shows the applicability of the proposed methods in the presence of significant calibration, perception, and dynamics modeling errors. We use CDCPD2 \cite{CDCPD2} to track the DOO and visual servoing from in-hand cameras to guide grasping. The environment geometry is specified manually, and the simulation dynamics were tuned to match the real world setup as closely as possible for the particular setup.

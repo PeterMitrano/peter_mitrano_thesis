@@ -1,0 +1,10 @@
+The previous chapter introduced the Model-Error Requirement RRT and a method for learning a recovery policy. In simulation, we used these methods to learn the reliability of a dynamics model for bimanual rope manipulation. We also executed trajectories planned in simulation in the real world to illustrate what it would look like to apply these methods in the real world. This was needed because the proposed learning methods did not consider data efficiency, and required datasets that would be impractical to collect in the real world.
+
+This chapter address this problem, by proposing a data augmentation method for manipulation. We first formalize data augmentation as an optimization problem, where we attempt to maximize diversity, validity, and relevance. We propose loss functions that formalize these abstract concepts, and apply our proposed method to learning dynamics and learning reliability. Finally, we use the proposed data augmentation method to learn reliability for dual-arm rope manipulation -- online, from scratch, and in the real world.
+
+\input{Chap3/sections/01_introduction.tex}
+\input{Chap3/sections/02_problem_statement.tex}
+\input{Chap3/sections/03_methods.tex}
+\input{Chap3/sections/04_results.tex}
+\input{Chap3/sections/05_limitations.tex}
+\input{Chap3/sections/06_conclusion.tex}

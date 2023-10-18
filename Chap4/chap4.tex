@@ -1,0 +1,9 @@
+The previous chapter introduced a data augmentation method for manipulation. We used this method to learn reliability for dual-arm rope manipulation in from real world data. The dynamics model used in these experiments was also trained on real world data, in a separate phase that was designed to ensure no contact between the rope and the environment. This extra step was time-consuming and hand-designed, and attempts to use free-space dynamics pretrained in simulation failed because the simulation and the real world rope dynamics were too different.
+
+This chapter address this problem, by proposing a novel dynamics adaptation method. Our key insight is that a free-space data from simulation is far more similar to free-space data from the real world than it is to non-free-space data from the real world. More generally, the problem we address is to adapt a dynamics model from a source environment to a target environment, where the source and target dynamics are similar in some regions but different in others. Our proposed adaptation method focuses adaptation on data where the dynamics are similar, which we show leads to more accurate dynamics for planning and good estimates of the dynamics model's reliability. Ultimately, we use this method to simultaneously adapt a dynamics model learned in simulation and learn reliability -- all online and in the real world.
+
+\input{Chap4/sections/01_introduction.tex}
+\input{Chap4/sections/02_problem_statement.tex}
+\input{Chap4/sections/03_methods.tex}
+\input{Chap4/sections/04_results.tex}
+\input{Chap4/sections/05_conclusion.tex}

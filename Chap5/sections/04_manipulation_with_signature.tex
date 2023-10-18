@@ -1,0 +1,63 @@
+\section[DOO Manipulation with the signature]{DOO Manipulation with \signature{}}
+
+\subsection{Problem Statement}
+
+In this section, we define the DOO manipulation problem which our proposed planning method addresses. The state $\state=(q,o)$ contains the robot configuration and the DOO configuration. In our experiments, the robot has two 7-dof arms attached to a 2-dof torso with parallel-jaw grippers, but the \signature{} can be applied to other robot morphologies. We assume we have a complete geometric model and skeleton of the environment. When manipulating with the current grasp, the action space is joint velocities $\qvel$. We describe points on the DOO primarily by their location $\loc\in[0,1]$, where $\loc=0$ is one end of the DOO and $\loc=1$ is the other. Each location also corresponds to a point $p(\loc)\in\mathrm{R}^3$. Grasps are represented by a vector of locations $\locs=[\loc_1,\loc_2]$, one for each gripper. A set of grasp locations $\locs$ must also be paired with a collision-free motion of the robot to the new grasp locations, which may be reachable by many distinct joint configurations.
+
+The goal of the manipulation is to bring a \textit{keypoint} $\kp$ on the DOO to a goal region with position $\goalPoint$ and radius $\goalRadius$. This is a useful skill for plugging in cables, or for using tools with an attached cable or hose, and more complex tasks like cable harnessing can be described as a sequence of these point reaching goals. Additionally, one can specify a desired \signature{} for the goal $\goalSig$. This type of DOO manipulation is complementary to tying or untying knots, which has been addressed in prior work \cite{Saha07,UntanglingFull,WeifuKnots}.
+
+\subsection{DOO Point Reaching Method}
+
+Algorithm \ref{alg:pointReaching} describes our method for point reaching tasks. However, the cost functions can be changed and additional checks can be included to adapt the method to other tasks. Given the current grasp, we use MPPI \cite{mppi} to find an action $\qvel$ that minimizes the goal cost $\goalCost$, shown in Eq \eqref{eq:pointReachingCost}. MPPI runs until the goal is reached or progress stops. If progress stops, we plan and execute a grasp change, and resume running MPPI. This process is repeated until the goal is reached (trial success) or for $\maxIters$ iterations (trial failure). For both MPPI and grasp planning, we model the dynamics of the robot, rope, and obstacles in MuJoCo \cite{mujoco}. 
+
+\begin{algorithm}
+    \caption{DOO Point Reaching with the \signature{}}\label{alg:pointReaching}
+    \SetAlgoLined
+    \DontPrintSemicolon
+    \For{$i < \maxIters$}{
+        $\qvel = $MPPI$(\state,\goalPoint, \goalCost)$ \\
+        $\state = f(\qvel)$ \tcp*{Execute and get state}
+        \If{$||\goalPoint - p(\kp)|| < \goalRadius$}{
+            break \\
+        }
+        \If{trapped}{
+            $d_0 = \min(|\locs_0-\kp|)$ \tcp*{Initial geodesic}
+            $\locs^* = \planGrasp(\state, n_x, \graspCost, \kp)$ \\
+            $d^* = \min(|\locs^*-\kp|)$ \\
+            \If{$d^* \geq d_0$ \tcp*{Unable to grasp closer}}{
+                Add $\sig(\state)$ to $\blist$ \\
+                $\locs^* = \planGrasp(\state, n_x, \kp)$ \\
+            }
+            ExecuteGraspChange$(\locs^*)$ \\
+        }
+    }
+\end{algorithm}
+
+The method for determining if MPPI is trapped, called trap detection, is adapted from \cite{TAMPC}. Trap detection operates on a window of recent joint configurations $q_1,\dots,\q_T$, and computes the average one-step state difference $\bar{q} = \frac{q_T-q_1}{T}$ and keeps a running maximum of this value $\bar{q}^+$ over the trial. MPPI is considered trapped when the ratio $\frac{\bar{q}}{\bar{q}^+}$ is below a threshold (0.2-0.3 in our experiments).
+
+The goal cost used for MPPI is shown in Equation \eqref{eq:pointReachingCost}, where the state $\state$ is used to compute the grasp locations $\locs$, grasping state $\isGrasping$, keypoint position $p(\kp)$, grasp positions $p(\locs)$, and number of contacts $\ncon$.
+
+\begin{equation}
+    \label{eq:pointReachingCost}
+    \begin{split}
+        \goalCost(\state,\qvel) = || p(\kp) - \goalPoint || + \alpha_1 \isGrasping \cdot || p(\locs) - \goalPoint || + \\
+        \alpha_2\sqrt{\ncon} + \alpha_3 || \qvel ||
+    \end{split}
+\end{equation}
+
+The first term in Eq.~\ref{eq:pointReachingCost} brings the keypoint $p(l_k)$ towards the goal $\goalPoint$. The second term provides a reward for moving the \textit{gripper} towards the goal. $\isGrasping$ is a binary vector indicating which grippers are grasping, and $\locs$ are the current grasp locations. The dot product enforces that only grasping grippers contribute to this cost term. This term is useful when the DOO is slack and the keypoint cannot be pulled directly (See Figure \ref{fig:examples} C). The third term penalizes collision between the robot and environment, based on the number of contacts $\ncon$ reported by the dynamics. Finally, the fourth term penalizes high joint velocities to encourage smooth motion. The hyperparameters $\alpha_{1,2,3}$ were selected to prioritize collision avoidance first, then bringing the keypoint to the goal.
+
+In \planGrasp{} we sample $n_x$ grasps ($\approx$50) and choose the best one. Grasps are sampled first by choosing a strategy for each gripper. The possible strategies are \texttt{STAY}, \texttt{GRASP}, \texttt{MOVE}, or \texttt{RELEASE}. For the \texttt{GRASP} or \texttt{MOVE} strategies, we sample a location $\loc \in [0,1]$. At least one gripper must be grasping. For each candidate grasp, we simulate release and grasp dynamics using MuJoCo. Modeling grasping using friction and caging is challenging, so we instead use equality constraints between the rope and the grippers that are activated or deactivated. MoveIt \cite{MoveIt} is used to find collision-free paths to move the grippers to the desired grasp locations. The result is a candidate state $\state$ and collision free trajectory for each candidate grasp. We choose the grasp with the lowest cost according to Eq.~\ref{eq:graspCost}. With abuse of notation, we say the candidate state $\state$, change in $\state$, and grasp state $\isGrasping$ are derived from the candidate grasp locations $\locs$.
+            
+\begin{equation}
+    \label{eq:graspCost}
+    \begin{split}
+    \graspCost(\locs)= \indic{}_\text{feasible} + \indic_{\blist}(\state) + \indic_{\sig}(\state, \goalSig) + \\
+    \isGrasping \cdot |\locs - \kp | + \beta_1 \Delta \state
+   \end{split}
+\end{equation}
+
+The first term in Eq \ref{eq:graspCost} assigns a large penalty (e.g. 100) if no collision-free path to the grasp was found. The next two terms assign a large penalty based on the \signature{} of candidate state, either for matching a blocklisted signature or for not matching the goal signature. If the task has no goal signature, this term is omitted. The fourth term encourages grasping near the keypoint, based on the geodesic distance for any grasping grippers. The final term penalizes the change in robot and DOO state. This results in shorter and faster grasps and is weighted by $\beta_1$ to be the least important term. The large penalties dominate the keypoint and state-change terms.
+
+We use a blocklist of \signature{}'s to avoid retrying topological configurations in which we have failed to reach the goal. Blocklisting \signature{}s allows us to search for grasps that are different from previous states, which was an effective strategy in our experiments. However, we do not want to blocklist if the goal is reachable with a different grasp with the same signature. Therefore, we only blocklist if the planner cannot find any grasp with lower geodesic cost (4th term in Eq \eqref{eq:graspCost}) than the current grasp (Alg \ref{alg:pointReaching} lines 8-12). This heuristic avoids blocklisting the current \signature{} in the case that the current grasp cannot control the keypoint toward the goal. This is inspired by the idea of diminishing rigidity \cite{DiminishingRigidity}, which says that the control over a point on a deformable object decreases as the geodesic distance to the gripper increases. In the case of multiple grippers, the initial grasp locations $\locs_0$ or new grasp locations $\locs^*$ may be a list of locations, in which case we use the $\min$ when computing the geodesic distance (Alg \ref{alg:pointReaching} lines 8, 14).
+

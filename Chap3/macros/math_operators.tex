@@ -1,0 +1,42 @@
+
+
+\newcommand{\maxprob}[1]{\underset{#1}{\max}}
+\newcommand{\minprob}[1]{\underset{#1}{\min}}
+
+\newcommand{\argmaxprob}[1]{\underset{#1}{\argmax}\;}
+\newcommand{\argminprob}[1]{\underset{#1}{\argmin}\;}
+\newcommand{\norm}[2]{\left|\left| #1 \right|\right|_{#2}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\card}[1]{\left|#1\right|}
+\newcommand{\expect}[2]{\mathbb{E}_{#1}\left[#2\right]}
+\newcommand{\prob}[1]{P\left(#1\right)}
+\newcommand{\uniformSymb}[0]{\mathcal{U}}
+\newcommand{\uniform}[1]{\uniformSymb\left(#1\right)}
+\newcommand{\lebesgueSymb}[0]{\lambda}
+\newcommand{\lebesgue}[1]{\lebesgueSymb\left(#1\right)}
+\newcommand{\unitBall}[0]{\zeta_n}
+\newcommand{\real}[0]{\mathbb{R}}
+\newcommand{\positiveReal}[0]{\mathbb{R}_{\geq0}}
+\newcommand{\domain}[1]{\mathbf{dom}\left(#1\right)}
+
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+
+\newcommand{\pair}[2]{\left( #1, #2\right)}
+\newcommand{\tuple}[1]{\left< #1\right>}
+
+\newcommand{\set}[1]{\left\lbrace #1\right\rbrace}
+\newcommand{\seq}[2]{\left(#1_{1}, #1_{2}, \ldots, #1_{#2}\right)}
+\newcommand{\seqset}[2]{\left\lbrace#1_{1}, #1_{2}, \ldots, #1_{#2}\right\rbrace}
+\newcommand{\setst}[2]{\left\lbrace #1\;\middle|\;#2\right\rbrace}
+
+\newcommand{\setInsert}[0]{\xleftarrow{\scriptscriptstyle +}}
+\newcommand{\setRemove}[0]{\xleftarrow{\scriptscriptstyle -}}
+
+\newcommand{\Ind}[0]{\mathbb{I}}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\Not}[1]{\overbar{#1}}
+
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}

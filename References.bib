@@ -1,0 +1,1520 @@
+% ICRA
+%% Water manipulation models
+@inproceedings{lin2020softgym,
+  author    = {Xingyu Lin and Yufei Wang and Jake Olkin and David Held},
+  title     = {SoftGym: Benchmarking Deep Reinforcement Learning for Deformable Object Manipulation},
+  booktitle = {CoRL},
+  year      = {2020},
+}
+@article{langsfeld2018selection,
+  title={Selection of trajectory parameters for dynamic pouring tasks based on exploitation-driven updates of local metamodels},
+  author={Langsfeld, Joshua D and Kaipa, Krishnanand N and Gupta, Satyandra K},
+  journal={Robotica},
+  year={2018},
+}
+
+ @inproceedings{li2018learning,
+  title={Learning Particle Dynamics for Manipulating Rigid Bodies, Deformable Objects, and Fluids},
+  author={Li, Yunzhu and Wu, Jiajun and Tedrake, Russ and Tenenbaum, Joshua B and Torralba, Antonio},
+  booktitle={International Conference on Learning Representations},
+  year={2018}
+}
+@inproceedings{pfaff2020learning,
+  title={Learning Mesh-Based Simulation with Graph Networks},
+  author={Pfaff, Tobias and Fortunato, Meire and Sanchez-Gonzalez, Alvaro and Battaglia, Peter},
+  booktitle={International Conference on Learning Representations},
+  year={2020}
+}
+
+@article{noda2007modeling,
+  title={Modeling and feedforward flow rate control of automatic pouring system with real ladle},
+  author={Noda, Yoshiyuki and Terashima, Kazuhiko},
+  journal={Journal of Robotics and Mechatronics},
+  year={2007},
+}
+
+@inproceedings{tsuji2014high,
+  title={High-precision pouring control using online model parameters identification in automatic pouring robot with cylindrical ladle},
+  author={Tsuji, Takaaki and Noda, Yoshiyuki},
+  booktitle={2014 IEEE International Conference on Systems, Man, and Cybernetics (SMC)},
+  year={2014},
+  organization={IEEE}
+}
+
+@inproceedings{guevara2017adaptable,
+  title={Adaptable pouring: Teaching robots not to spill using fast but approximate fluid simulation},
+  author={Guevara, Tatiana L{\'o}pez and Taylor, Nicholas K and Gutmann, Michael U and Ramamoorthy, Subramanian and Subr, Kartic},
+  booktitle={Proceedings of the Conference on Robot Learning (CoRL)},
+  year={2017}
+}
+
+@article{holl2020learning,
+  title={Learning to control pdes with differentiable physics},
+  author={Holl, Philipp and Koltun, Vladlen and Thuerey, Nils},
+  journal={arXiv preprint arXiv:2001.07457},
+  year={2020}
+}
+
+@article{li2022graph,
+  title={Graph neural network-accelerated Lagrangian fluid simulation},
+  author={Li, Zijie and Farimani, Amir Barati},
+  journal={Computers \& Graphics},
+  year={2022},
+  publisher={Elsevier}
+}
+
+%% Active learning
+@inproceedings{kim2017parts,
+  title={Parts assembly planning under uncertainty with simulation-aided physical reasoning},
+  author={Kim, Sung-Kyun and Likhachev, Maxim},
+  booktitle={2017 IEEE International Conference on Robotics and Automation},
+  year={2017},
+  organization={IEEE}
+}
+
+@article{bryan2005active,
+  title={Active learning for identifying function threshold boundaries},
+  author={Bryan, Brent and Nichol, Robert C and Genovese, Christopher R and Schneider, Jeff and Miller, Christopher J and Wasserman, Larry},
+  journal={Advances in neural information processing systems},
+  year={2005}
+}
+
+%% Peter's prior work
+@article{UnreliableMitrano2021,
+author={Peter Mitrano and Dale M\textsuperscript{c}Conachie and Dmitry Berenson}, 
+title={\href{https://www.science.org/doi/10.1126/scirobotics.abd8170}{Learning Where to Trust Unreliable Models in an Unstructured World for Deformable Object Manipulation}}, 
+year={2021}, 
+journal={Science Robotics}
+}
+
+%% Addressing model error in planning (also see Peter's work)
+@article{vemula2021cmaxplusplus,
+title={CMAX++ : Leveraging Experience in Planning and Execution using Inaccurate Models},
+journal={Proceedings of the AAAI Conference on Artificial Intelligence},
+author={Vemula, Anirudh and Bagnell, J. Andrew and Likhachev, Maxim},
+year={2021}, month={May},
+}
+
+%% Data efficient model-based RL
+@article{Chua2018,
+title = {Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models},
+author = {Chua, Kurtland and Calandra, Roberto and McAllister, Rowan and Levine, Sergey},
+journal= {NeurIPS},
+year = {2018},
+}
+
+%% Belief space planning
+@article{FIRM2014,
+title = {{FIRM}: Sampling-based feedback motion-planning under motion uncertainty and imperfect measurements},
+journal = {IJRR},
+author = {Ali{-}akbar Agha{-}mohammadi and Suman Chakravorty and Nancy M. Amato},
+year = {2014},
+}
+
+@article{LQGmp2011,
+title = {{LQG}-{MP}: Optimized path planning for robots with motion uncertainty and imperfect state information},
+author = {Berg, Jur van den and Abbeel, Pieter and Goldberg, Kenneth Y.},
+journal = {IJRR},
+year = {2011},
+}
+@inproceedings{platt2010belief,
+  author    = {Platt, Robert Jr. and Tedrake, Russ  an  Kaelbling, Leslie Pack and Lozano{-}P{\'{e}}rez, Tom{\'{a}}s},
+  title     = {Belief space planning assuming maximum likelihood observations},
+  booktitle = {RSS},
+  year      = {2010},
+}
+
+@article{kaelbling2013integrated,
+  title={Integrated task and motion planning in belief space},
+  author={Kaelbling, Leslie Pack and Lozano-P{\'e}rez, Tom{\'a}s},
+  journal={The International Journal of Robotics Research},
+  year={2013},
+  publisher={Sage Publications Sage UK: London, England}
+}
+
+
+%% Review of manipulation
+@article{ReviewKroemer2021,
+author={Oliver Kroemer and Scott Niekum and George Konidaris},
+title={\href{https://www.jmlr.org/papers/volume22/19-804/19-804.pdf}{A Review of Robot Learning for Manipulation: Challenges, Representations, and Algorithms}},
+journal={JMLR},
+year={2021}
+}
+
+%% Learning dynamics can take a lot of data!
+@article{Propnet,
+author={Yunzhu Li and Jiajun Wu and Jun{-}Yan Zhu and Joshua B. Tenenbaum and Antonio Torralba and Russ Tedrake},
+title={\href{http://propnet.csail.mit.edu/propnet-paper.pdf}{Propagation Networks for Model-Based Control Under Partial Observation}},
+journal={ICRA},
+year={2019}
+}
+
+@article{DBRP2020,
+author={Ahmet E. Tekden and Aykut Erdem and Erkut Erdem and Mert Imre and M. Yunus Seker and Emre Ugur},
+title={\href{https://arxiv.org/pdf/1909.03785.pdf}{Belief Regulated Dual Propagation Nets for Learning Action Effects on Groups of Articulated Objects}},
+journal={ICRA},
+year={2020},
+}
+
+%% sim2real
+@article{sim2realDynamics2018,
+title = {Sim-to-Real Transfer of Robotic Control with Dynamics Randomization},
+author = {Peng, Xue Bin and Andrychowicz, Marcin and Zaremba, Wojciech and Abbeel, Pieter},
+journal = {ICRA},
+year = {2018},
+}
+
+@inproceedings{sim2real2sim,
+  author    = {Peng Chang and
+               Taskin Padir},
+  title     = {Sim2Real2Sim: Bridging the Gap Between Simulation and Real-World in
+               Flexible Object Manipulation},
+  booktitle = {International Conference on Robotic Computing, {IRC}},
+  year      = {2020},
+}
+
+@article{real2sim2real,
+  author    = {Vincent Lim and
+               Huang Huang and
+               Lawrence Yunliang Chen and
+               Jonathan Wang and
+               Jeffrey Ichnowski and
+               Daniel Seita and
+               Michael Laskey and
+               Ken Goldberg},
+  title     = {Planar Robot Casting with Real2Sim2Real Self-Supervised Learning},
+  journal   = {Workshop on Representing and Manipulating Deformable Objects, ICRA},
+  year      = {2022},
+}
+
+%% project website
+@misc{ICRAProjectWebsite,
+title={\url{https://sites.google.com/view/adapt-unreliable-dynamics}},
+author={Peter Mitrano},
+}
+
+%% Rope manipulation
+
+% These two basically do the naive adaptation method, and doesn't consider collision of the rope with objects
+@article{GlobalAdapt22,
+  author={Yu, Mingrui and Lv, Kangchen and Zhong, Hanzhong and Song, Shiji and Li, Xiang},  
+  journal={IEEE Transactions on Robotics},   
+  title={Global Model Learning for Large Deformation Control of Elastic Deformable Linear Objects: An Efficient and Adaptive Approach},   
+  year={2022},  
+}
+@article{OfflineOnline22,
+title={Offline-Online Learning of Deformation Model for Cable Manipulation With Graph Neural Networks},
+author={Wang, Changhao and Zhang, Yuyou and Zhang, Xiang and Wu, Zheng and Zhu, Xinghao and Jin, Shiyu and Tang, Te and Tomizuka, Masayoshi},
+journal={RA-L},
+year={2022},
+}
+
+%% Alex papers
+@article{MDEs22,
+title = {Learning Model Preconditions for Planning with Multiple Models},
+author = {LaGrassa, Alex and Kroemer, Oliver},
+journal = {CoRL},
+year = {2022},
+}
+
+%% Error-aware learning (outside dynamics)
+@inproceedings{kumar2021error,
+  author    = {Visak C. V. Kumar and Sehoon Ha and C. Karen Liu},
+  title     = {Error-Aware Policy Learning: Zero-Shot Generalization in Partially Observable Dynamic Environments},
+  booktitle = {RSS},
+  year      = {2021},
+}
+
+%% Dynamics adaptation
+@inproceedings{hayashi2019online,
+  title={Online adaptation of uncertain models using neural network priors and partially observable planning},
+  author={Hayashi, Akinobu and Ruiken, Dirk and Goerick, Christian and Hasegawa, Tadaaki},
+  booktitle={2019 International Conference on Robotics and Automation (ICRA)},
+  year={2019},
+  organization={IEEE}
+}
+
+@article{arndt2021few,
+  title={Few-shot model-based adaptation in noisy conditions},
+  author={Arndt, Karol and Ghadirzadeh, Ali and Hazara, Murtaza and Kyrki, Ville},
+  journal={IEEE Robotics and Automation Letters},
+  year={2021},
+}
+
+@INPROCEEDINGS{chebotar2019closing,
+  author={Chebotar, Yevgen and Handa, Ankur and Makoviychuk, Viktor and Macklin, Miles and Issac, Jan and Ratliff, Nathan and Fox, Dieter},
+  booktitle={2019 International Conference on Robotics and Automation (ICRA)}, 
+  title={Closing the Sim-to-Real Loop: Adapting Simulation Randomization with Real World Experience}, 
+  year={2019},
+  }
+
+@ARTICLE{zhouBridging2022,
+  author={Zhou, Siqi and Pereida, Karime and Zhao, Wenda and Schoellig, Angela P.},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={Bridging the Model-Reality Gap With Lipschitz Network Adaptation}, 
+  year={2022},
+  number={1},
+  }
+
+@INPROCEEDINGS{courchesne2021onassessing,
+  author={Courchesne, Anthony and Censi, Andrea and Paull, Liam},
+  booktitle={2021 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+  title={On Assessing the Usefulness of Proxy Domains for Developing and Evaluating Embodied Agents}, 
+  year={2021},
+  number={},
+  }
+
+@inproceedings{fu2016one,
+  title={One-shot learning of manipulation skills with online dynamics adaptation and neural network priors},
+  author={Fu, Justin and Levine, Sergey and Abbeel, Pieter},
+  booktitle={2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year={2016},
+  organization={IEEE}
+}
+@inproceedings{nagabandi19learning,
+  author    = {Anusha Nagabandi and Ignasi Clavera and Simin Liu and Ronald S. Fearing and Pieter Abbeel and Sergey Levine and Chelsea Finn},
+  title     = {Learning to Adapt in Dynamic, Real-World Environments through Meta-Reinforcement Learning},
+  booktitle = {ICLR},
+  year      = {2019},
+}
+@inproceedings{schramm2020learning,
+  title={Learning to transfer dynamic models of underactuated soft robotic hands},
+  author={Schramm, Liam and Sintov, Avishai and Boularias, Abdeslam},
+  booktitle={2020 IEEE International Conference on Robotics and Automation (ICRA)},
+  year={2020},
+  organization={IEEE}
+}
+
+@inproceedings{evans2022context,
+  author    = {Ben Evans and Abitha Thankaraj and Lerrel Pinto},
+  title     = {Context is Everything: Implicit Identification for Dynamics Adaptation},
+  booktitle = {ICRA},
+  year      = {2022},
+}
+
+@INPROCEEDINGS{bocsi2013alignment,
+  author={Bócsi, Botond and Csató, Lehel and Peters, Jan},
+  booktitle={The 2013 International Joint Conference on Neural Networks (IJCNN)}, 
+  title={Alignment-based transfer learning for robot models}, 
+  year={2013},
+  number={},
+  }
+
+@INPROCEEDINGS{makondo2018accelerating,
+  author={Makondo, Ndivhuwo and Rosman, Benjamin and Hasegawa, Osamu},
+  booktitle={2018 IEEE International Conference on Robotics and Automation (ICRA)}, 
+  title={Accelerating Model Learning with Inter-Robot Knowledge Transfer}, 
+  year={2018},
+  }
+
+@INPROCEEDINGS{sorocky2020experience,
+  author={Sorocky, Michael J. and Zhou, Siqi and Schoellig, Angela P.},
+  booktitle={2020 IEEE International Conference on Robotics and Automation (ICRA)}, 
+  title={Experience Selection Using Dynamics Similarity for Efficient Multi-Source Transfer Learning Between Robots}, 
+  year={2020},
+  }
+
+@incollection{torrey2010transfer,
+  title={Transfer learning},
+  author={Torrey, Lisa and Shavlik, Jude},
+  booktitle={Handbook of research on machine learning applications and trends: algorithms, methods, and techniques},
+  year={2010},
+  publisher={IGI global}
+}
+
+
+%%Non-transfer methods for domain adaptation
+@inproceedings{lowrey2018reinforcement,
+  title={Reinforcement learning for non-prehensile manipulation: Transfer from simulation to physical system},
+  author={Lowrey, Kendall and Kolev, Svetoslav and Dao, Jeremy and Rajeswaran, Aravind and Todorov, Emanuel},
+  booktitle={2018 IEEE International Conference on Simulation, Modeling, and Programming for Autonomous Robots (SIMPAR)},
+  year={2018},
+  organization={IEEE}
+}
+
+
+%% Curriculum learning for data adaptatoin
+@inproceedings{zhang2017curriculum,
+  title={Curriculum domain adaptation for semantic segmentation of urban scenes},
+  author={Zhang, Yang and David, Philip and Gong, Boqing},
+  booktitle={Proceedings of the IEEE international conference on computer vision},
+  year={2017}
+}
+@inproceedings{zhan2021meta,
+  author    = {Runzhe Zhan and Xuebo Liu and Derek F. Wong and Lidia S. Chao},
+  title     = {Meta-Curriculum Learning for Domain Adaptation in Neural Machine Translation},
+  booktitle = {AAAI},
+  year      = {2021},
+}
+@article{gradualAdaptation20,
+  author   = {Ananya Kumar and Tengyu Ma and Percy Liang},
+  title    = {Understanding Self-Training for Gradual Domain Adaptation},
+  journal  = {Proceedings of the 37th International Conference on Machine Learning,
+               {ICML} 2020, 13-18 July 2020, Virtual Event},
+  year      = {2020},
+}
+
+
+@article{curriculumBengio09,
+  author    = {Yoshua Bengio and J{\'{e}}r{\^{o}}me Louradour and Ronan Collobert and Jason Weston},
+  title     = {Curriculum learning},
+  journal   = {ICML},
+  year      = {2009},
+}
+
+@article{curriculumDeepRL20,
+  author  = {R{\'{e}}my Portelas and C{\'{e}}dric Colas and Lilian Weng and Katja Hofmann and Pierre{-}Yves Oudeyer},
+  title   = {Automatic Curriculum Learning For Deep {RL:} {A} Short Survey},
+  journal = {IJCAI},
+  year    = {2020},
+}
+
+%% Adaptive Control (classic)
+@incollection{lavretsky2013robust,
+  title={Robust adaptive control},
+  author={Lavretsky, Eugene and Wise, Kevin A},
+  booktitle={Robust and adaptive control},
+  year={2013},
+  publisher={Springer}
+}
+@article{vinnicombe1993frequency,
+  title={Frequency domain uncertainty and the graph topology},
+  author={Vinnicombe, Glenn},
+  journal={IEEE Transactions on Automatic Control},
+  year={1993},
+}
+
+@article{sastry1989adaptive,
+  title={Adaptive control of linearizable systems},
+  author={Sastry, Sosale Shankara and Isidori, Alberto},
+  journal={IEEE Transactions on Automatic Control},
+  year={1989},
+}
+
+
+
+%%  ML data filtering
+@article{dataCleaningSurvey16,
+author = {Chu, Xu and Ilyas, Ihab F. and Krishnan, Sanjay and Wang, Jiannan},
+title = {Data Cleaning: Overview and Emerging Challenges},
+year = {2016},
+journal = {International Conference on Management of Data},
+} 
+
+@article{mislabeled99,
+title={Identifying Mislabeled Training Data},
+journal={Journal of Articial Intelligence Research},
+year={1999},
+author={Carla E. Brodley and  Mark A. Friedl}
+}
+
+@article{IPF07,
+  author    = {Taghi M. Khoshgoftaar and Pierre Rebours},
+  title     = {Improving Software Quality Prediction by Noise Filtering Techniques},
+  journal   = {J. Comput. Sci. Technol.},
+  year      = {2007},
+}
+
+@article{filtering21,
+  author    = {Gaoxia Jiang and Wenjian Wang and Yuhua Qian and Jiye Liang},
+  title     = {A Unified Sample Selection Framework for Output Noise Filtering: An Error-Bound Perspective},
+  journal   = {JMLR},
+  year      = {2021},
+}
+
+
+@article{anomoly22,
+  author  = {Daniel Bogdoll and Maximilian Nitsche and J. Marius Z{\"{o}}llner},
+  title   = {Anomaly Detection in Autonomous Driving: {A} Survey},
+  journal = {{CVPR} Workshop},
+  year      = {2022},
+}
+
+% RSS
+@article{DisbandOpenAI2021,
+title={\href{https://www.youtube.com/watch?v=429QC4Yl-mA&t=1170s}{OpenAI Disbands Robotics}},
+author={Wojciech Zaremba},
+year={2021},
+journal={Interview on YouTube}
+}
+
+@misc{NLPMa2019,
+title={\href{https://github.com/makcedward/nlpaug}{NLP Augmentation}},
+author={Edward Ma},
+year={2019}
+}
+
+@article{NLPSurveyFeng2021,
+journal={Association for Computational Linguistics},
+title={\href{https://aclanthology.org/2021.findings-acl.84.pdf}{A Survey of Data Augmentation Approaches for NLP}}, 
+author={Steven Y. Feng and Varun Gangal and Jason Wei and Sarath Chandar and Soroush Vosoughi and Teruko Mitamura and Eduard Hovy},
+year={2021},
+}
+
+@article{TimeSeriesSurveyIwana2020,
+author={Brian Kenji Iwana and Seiichi Uchida},
+title={\href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0254841}{An Empirical Survey of Data Augmentation for Time Series Classification with Neural Networks}},
+journal={PLOS One},
+year={2020},
+}
+
+@article{BayesianDATran2017,
+author={Toan Tran and Trung Pham and Gustavo Carneiro and Lyle J. Palmer and Ian D. Reid},
+title={\href{https://arxiv.org/pdf/1710.10564.pdf}{A Bayesian Data Augmentation Approach for Learning Deep Models}},
+journal={NeurIPS},
+year={2017}
+}
+
+@article{MaterialsAEOhno2020,
+author={Hiroshi Ohno},
+title={\href{https://link.springer.com/content/pdf/10.1007/s00500-019-04094-0.pdf}{Auto-encoder-based generative models for data augmentation on regression problems}},
+journal={Soft Computing},
+year={2020}
+}
+
+@article{PILCO,
+title={\href{https://mlg.eng.cam.ac.uk/pub/pdf/DeiRas11.pdf}{Gaussian Processes for Data-Efficient Learning in Robotics and Control}},
+author={Marc Peter Deisenroth and Dieter Fox and Carl Edward Rasmussen},
+journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+year={2015},
+}
+
+@article{RLAugLaskin2020,
+author={Michael Laskin and Kimin Lee and Adam Stooke and Lerrel Pinto and Pieter Abbeel and Aravind Srinivas},
+title={\href{https://proceedings.neurips.cc/paper/2020/file/e615c82aba461681ade82da2da38004a-Paper.pdf}{Reinforcement Learning with Augmented Data}},
+journal={NeurIPS},
+year={2020}
+}
+
+@article{ImageAugSurvey2019,
+author={Connor Shorten and Taghi M. Khoshgoftaar},
+title={\href{https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0197-0}{A survey on Image Data Augmentation for Deep Learning}},
+journal={Journal of Big Data},
+year={2019}
+}
+
+@article{PriceForecastingAE2021,
+title={\href{https://www.sciencedirect.com/science/article/pii/S0306261921010527}{Data augmentation for time series regression: Applying transformations, autoencoders and adversarial networks to electricity price forecasting}},
+journal={Applied Energy},
+year={2021},
+author={Sumeyra Demir and Krystof Mincev and Koen Kok and Nikolaos G. Paterakis}
+}
+
+@article{BestPractice2003,
+author={Simard, P.Y. and Steinkraus, D. and Platt, J.C.},
+journal={International Conference on Document Analysis and Recognition},
+title={\href{https://ieeexplore.ieee.org/document/1227801}{Best practices for convolutional neural networks applied to visual document analysis}},
+year={2003},
+}
+
+@article{AutoAugment,
+author={Ekin Dogus Cubuk and Barret Zoph and Dandelion Man{\'{e}} and Vijay Vasudevan and Quoc V. Le},
+title={AutoAugment: Learning Augmentation Policies from Data},
+journal={ArXiv},
+year={2018},
+
+}
+
+@article{RoboticPriors2015,
+author={Rico Jonschkowski and Oliver Brock},
+title={\href{https://link.springer.com/article/10.1007/s10514-015-9459-7}{Learning state representations with robotic priors}},
+journal={Autonomous Robots},
+year={2015}
+}
+
+@article{Augerino2020,
+author={Gregory W. Benton and Marc Finzi and Pavel Izmailov and Andrew Gordon Wilson},
+title={\href{https://proceedings.neurips.cc/paper/2020/file/cc8090c4d2791cdd9cd2cb3c24296190-Paper.pdf}{Learning Invariances in Neural Networks from Training Data}},
+journal={NeurIPS},
+year={2020}
+}
+
+@article{ZhuEquivariant2022,
+  author    = {Xupeng Zhu and
+               Dian Wang and
+               Ondrej Biza and
+               Guanang Su and
+               Robin Walters and
+               Robert Platt},
+  title     = {Sample Efficient Grasp Learning Using Equivariant Models},
+  journal   = {RSS},
+  year      = {2022},
+}
+
+@article{EquivariantTransporter2022,
+  author    = {Haojie Huang and
+               Dian Wang and
+               Robin Walters and
+               Robert Platt},
+  title     = {Equivariant Transporter Network},
+  journal   = {RSS},
+  year      = {2022},
+}
+
+@article{WEFRobots,
+title={\href{https://www.weforum.org/agenda/2021/12/robots-jobs-staff-shortage-automation/}{Robot workers are being hired at record rates in US companies - here’s why}},
+author={Johnny Wood},
+year={2021},
+journal={World Economic Forum},
+}
+
+@article{GANGoodfellow14,
+title={\href{https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf}{Generative Adversarial Nets}},
+author={Goodfellow, Ian and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
+journal={NeurIPS},
+year={2014}
+}
+
+@article{CDCPD2,
+author={Yixuan Wang and Dale McConachie and Dmitry Berenson},
+title={\href{https://doi.org/10.1109/ICRA48506.2021.9561012}{Tracking Partially-Occluded Deformable Objects while Enforcing Geometric Constraints}},
+journal={ICRA},
+year={2021},
+}
+
+@article{LinearAlarcon2013,
+author={Navarro-Alarcón, David and Liu, Yun-Hui and Romero, José Guadalupe and Li, Peng},
+title={\href{https://ieeexplore.ieee.org/document/6581888}{Model-Free Visually Servoed Deformation Control of Elastic Objects by Robot Manipulators}}, 
+journal={IEEE Transactions on Robotics},
+year={2013}
+}
+
+@article{PushSim2021,
+author={Ziyan, Gao and Elibol, Armagan and Chong, Nak Young},
+journal={International Conference on Automation Science and Engineering (CASE)},
+title={\href{https://ieeexplore.ieee.org/document/9551513}{Planar Pushing of Unknown Objects Using a Large-Scale Simulation Dataset and Few-Shot Learning}},
+year={2021}
+}
+
+@article{PushYu2016,
+author={Kuan{-}Ting Yu and Maria Bauz{\'{a}} and Nima Fazeli and Alberto Rodriguez},
+title={\href{https://arxiv.org/pdf/1604.04038.pdf}{More than a Million Ways to Be Pushed: {A} High-Fidelity Experimental Data Set of Planar Pushing}},
+journal={IROS},
+year={2016},
+}
+
+@article{UnreliableDale2019,
+author={Dale McConachie and Thomas Power and Peter Mitrano and Dmitry Berenson},
+title={\href{https://arxiv.org/pdf/2001.11051.pdf}{Learning When to Trust a Dynamics Model for Planning in Reduced State Spaces}},
+journal={IEEE Robotics and Automation Letters},
+year={2020},
+}
+
+% SciRob
+@inproceedings{Wang2019,
+	title = {Learning {Robotic} {Manipulation} through {Visual} {Planning} and {Acting}},
+	booktitle = {Robotics: {Science} and {Systems} {XV}},
+	author = {Wang, Angelina and Kurutach, Thanard and Abbeel, Pieter and Tamar, Aviv},
+	year = {2019},
+}
+
+@inproceedings{Lakshminarayanan2017,
+	title = {Simple and {Scalable} {Predictive} {Uncertainty} {Estimation} using {Deep} {Ensembles}},
+	booktitle = {Advances in {Neural} {Information} {Processing} {Systems} 30: {Annual} {Conference} on {Neural} {Information} {Processing} {Systems} 2017, {December} 4-9, 2017, {Long} {Beach}, {CA}, {USA}},
+	author = {Lakshminarayanan, Balaji and Pritzel, Alexander and Blundell, Charles},
+	year = {2017},
+}
+
+@inproceedings{Kamthe2018,
+	series = {Proceedings of {Machine} {Learning} {Research}},
+	title = {Data-{Efficient} {Reinforcement} {Learning} with {Probabilistic} {Model} {Predictive} {Control}},
+	booktitle = {AISTATS},
+	author = {Kamthe, Sanket and Deisenroth, Marc Peter},
+	year = {2018},
+}
+
+@inproceedings{WangBounded2018,
+	title = {Bounded {Policy} {Synthesis} for {POMDPs} with {Safe}-{Reachability} {Objectives}},
+	booktitle = {Proceedings of the 17th {International} {Conference} on {Autonomous} {Agents} and {MultiAgent} {Systems}, {AAMAS} 2018, {Stockholm}, {Sweden}, {July} 10-15, 2018},
+	publisher = {International Foundation for Autonomous Agents and Multiagent Systems Richland, SC, USA / ACM},
+	author = {Wang, Yue and Chaudhuri, Swarat and Kavraki, Lydia E.},
+	year = {2018},
+}
+
+@article{FIRM,
+	title = {{FIRM}: {Sampling}-based feedback motion-planning under motion uncertainty and imperfect measurements},
+	journal = {Int. J. Robotics Res.},
+	author = {Agha-mohammadi, Ali-akbar and Chakravorty, Suman and Amato, Nancy M.},
+	year = {2014},
+}
+
+@article{LQGMP,
+	title = {{LQG}-{MP}: {Optimized} path planning for robots with motion uncertainty and imperfect state information},
+	journal = {Int. J. Robotics Res.},
+	author = {Berg, Jur van den and Abbeel, Pieter and Goldberg, Kenneth Y.},
+	year = {2011},
+}
+
+@inproceedings{Finn2017,
+	title = {Deep visual foresight for planning robot motion},
+	booktitle = {2017 {IEEE} {International} {Conference} on {Robotics} and {Automation}, {ICRA} 2017, {Singapore}, {Singapore}, {May} 29 - {June} 3, 2017},
+	publisher = {IEEE},
+	author = {Finn, Chelsea and Levine, Sergey},
+	year = {2017},
+}
+
+@inproceedings{Koller2019,
+	title = {Learning-based {Model} {Predictive} {Control} for {Safe} {Exploration} and {Reinforcement} {Learning}},
+	booktitle = {Workshop on {Safe} {Autonomy}},
+	author = {Koller, Torsten and Berkenkamp, Felix and Turchetta, Matteo and Boedecker, Joschka and Krause, Andreas},
+	year = {2019},
+}
+
+@inproceedings{Nagabandi2018,
+	title = {Neural {Network} {Dynamics} for {Model}-{Based} {Deep} {Reinforcement} {Learning} with {Model}-{Free} {Fine}-{Tuning}},
+	booktitle = {2018 {IEEE} {International} {Conference} on {Robotics} and {Automation}, {ICRA} 2018, {Brisbane}, {Australia}, {May} 21-25, 2018},
+	publisher = {IEEE},
+	author = {Nagabandi, Anusha and Kahn, Gregory and Fearing, Ronald S. and Levine, Sergey},
+	year = {2018},
+}
+
+@article{Lamiraux2001,
+	title = {Planning {Paths} for {Elastic} {Objects} under {Manipulation} {Constraints}},
+	journal = {Int. J. Robotics Res.},
+	author = {Lamiraux, Florent and Kavraki, Lydia E.},
+	year = {2001},
+}
+
+@inproceedings{Matas2018sim2real,
+	title = {Sim-to-{Real} {Reinforcement} {Learning} for {Deformable} {Object} {Manipulation}},
+	booktitle = {CoRL},
+	author = {Matas, Jan and James, Stephen and Davison, Andrew J.},
+	year = {2018},
+}
+
+@inproceedings{Sundaresan2020,
+	title = {Learning Rope Manipulation Policies Using Dense Object Descriptors Trained on Synthetic Depth Data},
+	booktitle = {ICRA},
+	author = {sundaresan, Priya and Grannen, Jennifer and Thananjeyan, Brijen and Balakrishna, Ashwin and Laskey, Michael and Stone, Kevin and Gonzalez, Joseph E. and Goldberg, Ken},
+	year = {2020},
+}
+
+@inproceedings{Nair2017,
+	title = {Combining self-supervised learning and imitation for vision-based rope manipulation},
+	booktitle = {2017 {IEEE} {International} {Conference} on {Robotics} and {Automation}, {ICRA} 2017, {Singapore}, {Singapore}, {May} 29 - {June} 3, 2017},
+	publisher = {IEEE},
+	author = {Nair, Ashvin and Chen, Dian and Agrawal, Pulkit and Isola, Phillip and Abbeel, Pieter and Malik, Jitendra and Levine, Sergey},
+	year = {2017},
+}
+
+@inproceedings{Zhang2019,
+	title = {{SOLAR}: {Deep} {Structured} {Representations} for {Model}-{Based} {Reinforcement} {Learning}},
+	booktitle = {ICML},
+	author = {Zhang, Marvin and Vikram, Sharad and Smith, Laura and Abbeel, Pieter and Johnson, Matthew J. and Levine, Sergey},
+	year = {2019},
+}
+
+@book{Goldberg1993,
+	title = {Neural {Networks} {In} {Robotics}},
+	publisher = {Science},
+	author = {Bekey, George A. and Goldberg, Kenneth Y.},
+	year = {1993},
+}
+
+@article{Ichter2019,
+	title = {Robot {Motion} {Planning} in {Learned} {Latent} {Spaces}},
+	journal = {RA-L},
+	author = {Ichter, Brian and Pavone, Marco},
+	year = {2019},
+}
+
+@inproceedings{Hafner2019,
+	title = {Learning {Latent} {Dynamics} for {Planning} from {Pixels}},
+	booktitle = {ICML},
+	author = {Hafner, Danijar and Lillicrap, Timothy P. and Fischer, Ian and Villegas, Ruben and Ha, David and Lee, Honglak and Davidson, James},
+	year = {2019},
+}
+
+@inproceedings{Srinivas2018,
+	title = {Universal {Planning} {Networks}: {Learning} {Generalizable} {Representations} for {Visuomotor} {Control}},
+	booktitle = {ICML},
+	author = {Srinivas, Aravind and Jabri, Allan and Abbeel, Pieter and Levine, Sergey and Finn, Chelsea},
+	year = {2018},
+}
+
+@inproceedings{Vemula2020,
+	title = {Planning and {Execution} using {Inaccurate} {Models} with {Provable} {Guarantees}},
+	booktitle = {Robotics Science and Systems},
+	author = {Vemula, Anirudh and Oza, Yash and Bagnell, J. Andrew and Likhachev, Maxim},
+	year = {2020},
+}
+
+@inproceedings{Jia2018,
+	title = {Manipulating {Highly} {Deformable} {Materials} {Using} a {Visual} {Feedback} {Dictionary}},
+	booktitle = {2018 {IEEE} {International} {Conference} on {Robotics} and {Automation}, {ICRA} 2018, {Brisbane}, {Australia}, {May} 21-25, 2018},
+	publisher = {IEEE},
+	author = {Jia, Biao and Hu, Zhe and Pan, Jia and Manocha, Dinesh},
+	year = {2018},
+}
+
+@inproceedings{Wu2020,
+	title = {Learning to {Manipulate} {Deformable} {Objects} without {Demonstrations}},
+	booktitle = {RSS},
+	author = {Wu, Yilin and Yan, Wilson and Kurutach, Thanard and Pinto, Lerrel and Abbeel, Pieter},
+	year = {2020},
+}
+
+@article{McConachie2020,
+	title = {Manipulating deformable objects by interleaving prediction,  planning,  and control},
+	journal = {International Journal of Robotics Research},
+	author = {McConachie, Dale and Dobson, Andrew and Ruan, Mengyao and Berenson, Dmitry},
+	year = {2020},
+}
+
+@inproceedings{Fu2016,
+	title = {One-shot learning of manipulation skills with online dynamics adaptation and neural network priors},
+	booktitle = {2016 {IEEE}/{RSJ} {International} {Conference} on {Intelligent} {Robots} and {Systems}, {IROS} 2016, {Daejeon}, {South} {Korea}, {October} 9-14, 2016},
+	publisher = {IEEE},
+	author = {Fu, Justin and Levine, Sergey and Abbeel, Pieter},
+	year = {2016},
+}
+
+@inproceedings{Clavera2018,
+	title = {Model-{Based} {Reinforcement} {Learning} via {Meta}-{Policy} {Optimization}},
+	booktitle = {CoRL},
+	author = {Clavera, Ignasi and Rothfuss, Jonas and Schulman, John and Fujita, Yasuhiro and Asfour, Tamim and Abbeel, Pieter},
+	year = {2018},
+}
+
+@inproceedings{Bousmalis2018,
+	title = {Using {Simulation} and {Domain} {Adaptation} to {Improve} {Efficiency} of {Deep} {Robotic} {Grasping}},
+	booktitle = {2018 {IEEE} {International} {Conference} on {Robotics} and {Automation}, {ICRA} 2018, {Brisbane}, {Australia}, {May} 21-25, 2018},
+	publisher = {IEEE},
+	author = {Bousmalis, Konstantinos and Irpan, Alex and Wohlhart, Paul and Bai, Yunfei and Kelcey, Matthew and Kalakrishnan, Mrinal and Downs, Laura and Ibarz, Julian and Pastor, Peter and Konolige, Kurt and Levine, Sergey and Vanhoucke, Vincent},
+	year = {2018},
+}
+
+@inproceedings{Peng2018,
+	title = {Sim-to-{Real} {Transfer} of {Robotic} {Control} with {Dynamics} {Randomization}},
+	booktitle = {2018 {IEEE} {International} {Conference} on {Robotics} and {Automation}, {ICRA} 2018, {Brisbane}, {Australia}, {May} 21-25, 2018},
+	publisher = {IEEE},
+	author = {Peng, Xue Bin and Andrychowicz, Marcin and Zaremba, Wojciech and Abbeel, Pieter},
+	year = {2018},
+}
+
+@article{Lee2020,
+	title = {Learning quadrupedal locomotion over challenging terrain},
+	journal = {Science Robotics},
+	author = {Lee, Joonho and Hwangbo, Jemin and Wellhausen, Lorenz and Koltun, Vladlen and Hutter, Marco},
+	year = {2020},
+}
+
+@article{Openai2019,
+	title = {Solving {Rubik}'s {Cube} with a {Robot} {Hand}},
+	journal = {arXiv:1910.07113 [cs, stat]},
+	author = {OpenAI and Akkaya, Ilge and Andrychowicz, Marcin and Chociej, Maciek and Litwin, Mateusz and McGrew, Bob and Petron, Arthur and Paino, Alex and Plappert, Matthias and Powell, Glenn and Ribas, Raphael and Schneider, Jonas and Tezak, Nikolas and Tworek, Jerry and Welinder, Peter and Weng, Lilian and Yuan, Qiming and Zaremba, Wojciech and Zhang, Lei},
+	year = {2019},
+}
+
+@article{LaValle2001,
+	title = {Randomized {Kinodynamic} {Planning}},
+	journal = {IJRR},
+	author = {LaValle, Steven M. and Kuffner, James Jr. J. },
+	year = {2001},
+}
+
+@inproceedings{Schneider1996,
+	title = {Exploiting {Model} {Uncertainty} {Estimates} for {Safe} {Dynamic} {Control} {Learning}},
+	booktitle = {Advances in {Neural} {Information} {Processing} {Systems} 9, {NIPS}, {Denver}, {CO}, {USA}, {December} 2-5, 1996},
+	publisher = {MIT Press},
+	author = {Schneider, Jeff G.},
+	year = {1996},
+}
+
+@inproceedings{Bechtle2019,
+	title = {Curious {iLQR}: {Resolving} {Uncertainty} in {Model}-based {RL}},
+	booktitle = {CoRL},
+	author = {Bechtle, Sarah and Lin, Yixin and Rai, Akshara and Righetti, Ludovic and Meier, Franziska},
+	year = {2019},
+}
+
+@article{Hullermeier2021,
+	title = {Aleatoric and epistemic uncertainty in machine learning: an introduction to concepts and methods},
+    author = {Eyke H{\"{u}}llermeier and Willem Waegeman},
+	journal = {Machine Learning},
+	year = {2021},
+}
+
+@article{Hora1996,
+	title = {Aleatory and epistemic uncertainty in probability elicitation with an example from hazardous waste management},
+	journal = {Reliability Engineering \& System Safety},
+	author = {Hora, Stephen C.},
+	year = {1996},
+}
+
+@inproceedings{Gal2016,
+	title = {Dropout as a {Bayesian} {Approximation}: {Representing} {Model} {Uncertainty} in {Deep} {Learning}},
+	booktitle = {ICML},
+	author = {Gal, Yarin and Ghahramani, Zoubin},
+	year = {2016},
+}
+
+@article{Guzzi2020,
+	title = {Path {Planning} {With} {Local} {Motion} {Estimations}},
+	journal = {RA-L},
+	author = {Guzzi, Jérôme and Chavez-Garcia, R. Omar and Nava, Mirko and Gambardella, Luca Maria and Giusti, Alessandro},
+	year = {2020},
+}
+
+@article{Zhou1998,
+	title = {{ESSENTIALS} {OF} {ROBUST} {CONTROL}},
+	journal = {Prentice Hall},
+	author = {Zhou, Kemin and Doyle, John Comstock},
+	year = {1998},
+}
+
+@inproceedings{Kobilarov2011,
+	title = {Cross-{Entropy} {Randomized} {Motion} {Planning}},
+	booktitle = {RSS},
+	author = {Kobilarov, Marin},
+	year = {2011},
+}
+
+@article{Kavraki1996,
+	title = {Probabilistic roadmaps for path planning in high-dimensional configuration spaces},
+	journal = {IEEE Trans. Robotics Autom.},
+	author = {Kavraki, Lydia E. and Svestka, Petr and Latombe, Jean-Claude and Overmars, Mark H.},
+	year = {1996},
+}
+
+@inproceedings{Ratliff2006,
+	title = {Maximum margin planning},
+	booktitle = {ICML},
+	author = {Ratliff, Nathan D. and Bagnell, J. Andrew and Zinkevich, Martin},
+	year = {2006},
+}
+
+@inproceedings{Berkenkamp2017,
+	title = {Safe {Model}-based {Reinforcement} {Learning} with {Stability} {Guarantees}},
+	booktitle = {Advances in {Neural} {Information} {Processing} {Systems} 30: {Annual} {Conference} on {Neural} {Information} {Processing} {Systems} 2017, {December} 4-9, 2017, {Long} {Beach}, {CA}, {USA}},
+	author = {Berkenkamp, Felix and Turchetta, Matteo and Schoellig, Angela P. and Krause, Andreas},
+	year = {2017},
+}
+
+@inproceedings{Koller2018,
+	title = {Learning-{Based} {Model} {Predictive} {Control} for {Safe} {Exploration}},
+	booktitle = {57th {IEEE} {Conference} on {Decision} and {Control}, {CDC} 2018, {Miami}, {FL}, {USA}, {December} 17-19, 2018},
+	publisher = {IEEE},
+	author = {Koller, Torsten and Berkenkamp, Felix and Turchetta, Matteo and Krause, Andreas},
+	year = {2018},
+}
+
+@article{Fisac2019safety,
+	title = {A {General} {Safety} {Framework} for {Learning}-{Based} {Control} in {Uncertain} {Robotic} {Systems}},
+	journal = {IEEE Trans. Autom. Control.},
+	author = {Fisac, Jaime F. and Akametalu, Anayo K. and Zeilinger, Melanie N. and Kaynama, Shahab and Gillula, Jeremy H. and Tomlin, Claire J.},
+	year = {2019},
+}
+
+@inproceedings{NagabandiImageConditiondDynamics2018,
+	title = {Learning {Image}-{Conditioned} {Dynamics} {Models} for {Control} of {Underactuated} {Legged} {Millirobots}},
+	booktitle = {IROS},
+	author = {Nagabandi, Anusha and Yang, Guangzhao and Asmar, Thomas and Pandya, Ravi and Kahn, Gregory and Levine, Sergey and Fearing, Ronald S.},
+	year = {2018},
+}
+
+@inproceedings{Mrowca2018,
+	title = {Flexible neural representation for physics prediction},
+	booktitle = {Advances in {Neural} {Information} {Processing} {Systems} 31: {Annual} {Conference} on {Neural} {Information} {Processing} {Systems} 2018, {NeurIPS} 2018, {December} 3-8, 2018, {Montréal}, {Canada}},
+	author = {Mrowca, Damian and Zhuang, Chengxu and Wang, Elias and Haber, Nick and Li, Fei-Fei and Tenenbaum, Josh and Yamins, Daniel L.},
+	year = {2018},
+}
+
+@article{Yan2020,
+	title = {Self-{Supervised} {Learning} of {State} {Estimation} for {Manipulating} {Deformable} {Linear} {Objects}},
+	journal = {RA-L},
+	author = {Yan, Mengyuan and Zhu, Yilin and Jin, Ning and Bohg, Jeannette},
+	year = {2020},
+}
+
+@techreport{ODE,
+	title = {Open {Dynamics} {Engine}},
+	author = {Smith, Russell},
+        institution = {University of Auckland},
+	year = {2005},
+}
+
+@inproceedings{Gazebo,
+	title = {Design and use paradigms for {Gazebo}, an open-source multi-robot simulator},
+	booktitle = {2004 {IEEE}/{RSJ} {International} {Conference} on {Intelligent} {Robots} and {Systems}, {Sendai}, {Japan}, {September} 28 - {October} 2, 2004},
+	publisher = {IEEE},
+	author = {Koenig, Nathan P. and Howard, Andrew},
+	year = {2004},
+}
+
+@article{ompl,
+  author    = {Ioan Alexandru Sucan and
+               Mark Moll and
+               Lydia E. Kavraki},
+  title     = {The Open Motion Planning Library},
+  journal   = {{IEEE} Robotics Autom. Mag.},
+  year      = {2012},
+}
+
+@inproceedings{PatchPlans2020,
+  author    = {Alex LaGrassa and Steven Lee and Oliver Kroemer},
+  title     = {Learning Skills to Patch Plans Based on Inaccurate Models},
+  booktitle = {IROS},
+  year      = {2020},
+}
+
+@inproceedings{DaleBandit,
+  author    = {Dale McConachie and Dmitry Berenson},
+  title     = {Bandit-Based Model Selection for Deformable Object Manipulation},
+  booktitle = {WAFR},
+  year      = {2016},
+}
+
+@article{MAPElites,
+author = {Mouret, Jean-Baptiste and Clune, Jeff},
+year = {2015},
+title = {Illuminating search spaces by mapping elites},
+journal={ArXiv},
+}
+
+@inproceedings{CMAMapElites,
+  author = {Fontaine, Matthew C. and Togelius, Julian and Nikolaidis, Stefanos and Hoover, Amy K.},
+  title = {Covariance Matrix Adaptation for the Rapid Illumination of Behavior Space},
+  year = {2020},
+  booktitle = {Proceedings of the 2020 Genetic and Evolutionary Computation Conference},
+}
+
+@misc{pyribs,
+  title = {pyribs: A bare-bones Python library for quality diversity
+           optimization},
+  author = {Bryon Tjanaka and Matthew C. Fontaine and Yulun Zhang and
+            Sam Sommerer and Nathan Dennler and Stefanos Nikolaidis},
+  year = {2021},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/icaros-usc/pyribs}},
+}
+
+% PROPOSED WORK
+@inproceedings{GarmentRegrasping,
+  author    = {Yinxiao Li and
+               Danfei Xu and
+               Yonghao Yue and
+               Yan Wang and
+               Shih{-}Fu Chang and
+               Eitan Grinspun and
+               Peter K. Allen},
+  title     = {Regrasping and unfolding of garments using predictive thin shell modeling},
+  booktitle = {ICRA},
+  year      = {2015},
+}
+
+@inproceedings{TissueShapeServoing,
+  author    = {Changyeob Shin and
+               Peter Walker Ferguson and
+               Sahba Aghajani Pedram and
+               Ji Ma and
+               Erik P. Dutson and
+               Jacob Rosen},
+  title     = {Autonomous Tissue Manipulation via Surgical Robot Using Learning Based
+               Model Predictive Control},
+  booktitle = {ICRA},
+  year      = {2019},
+}
+
+@inproceedings{RegraspingNeedles,
+  author    = {Zih{-}Yun Chiu and
+               Florian Richter and
+               Emily K. Funk and
+               Ryan K. Orosco and
+               Michael C. Yip},
+  title     = {Bimanual Regrasping for Suture Needles using Reinforcement Learning
+               for Rapid Motion Planning},
+  booktitle = {ICRA},
+  year      = {2021},
+}
+
+@article{CableTactile,
+  author    = {Yu She and
+               Shaoxiong Wang and
+               Siyuan Dong and
+               Neha Sunil and
+               Alberto Rodriguez and
+               Edward H. Adelson},
+  title     = {Cable manipulation with a tactile-reactive gripper},
+  journal   = {IJRR},
+  year      = {2021},
+}
+
+@article{EstimationServoing2018,
+  author    = {Tao Han and
+               Xuan Zhao and
+               Peigen Sun and
+               Jia Pan},
+  title     = {Robust shape estimation for 3D deformable object manipulation},
+  journal   = {Commun. Inf. Syst.},
+  year      = {2018},
+}
+
+@inproceedings{KnotUntying2020,
+  author    = {Jennifer Grannen and
+               Priya Sundaresan and
+               Brijen Thananjeyan and
+               Jeffrey Ichnowski and
+               Ashwin Balakrishna and
+               Vainavi Viswanath and
+               Michael Laskey and
+               Joseph Gonzalez and
+               Ken Goldberg},
+  title     = {Untangling Dense Knots by Learning Task-Relevant Keypoints},
+  booktitle = {CoRL},
+  year      = {2020},
+}
+
+@inproceedings{Untangle2013,
+  author    = {Wen Hao Lui and
+               Ashutosh Saxena},
+  title     = {Tangled: Learning to untangle ropes with {RGB-D} perception},
+  booktitle = {IROS},
+  pages     = {837--844},
+  year      = {2013},
+}
+
+@inproceedings{AssistedDressing2018,
+  author    = {Zackory Erickson and
+               Henry M. Clever and
+               Greg Turk and
+               C. Karen Liu and
+               Charles C. Kemp},
+  title     = {Deep Haptic Model Predictive Control for Robot-Assisted Dressing},
+  booktitle = {ICRA},
+  year      = {2018},
+}
+
+@inproceedings{AssistanceDMP2017,
+  author    = {Ravi Prakash Joshi and
+               Nishanth Koganti and
+               Tomohiro Shibata},
+  title     = {Robotic cloth manipulation for clothing assistance task using Dynamic
+               Movement Primitives},
+  booktitle = {Proceedings of the Advances in Robotics, {AIR}},
+  year      = {2017},
+}
+
+@inproceedings{VisualFeedbackDictionary2018,
+  author    = {Biao Jia and
+               Zhe Hu and
+               Jia Pan and
+               Dinesh Manocha},
+  title     = {Manipulating Highly Deformable Materials Using a Visual Feedback Dictionary},
+  booktitle = {ICRA},
+  year      = {2018},
+}
+
+@article{GarmentsZhang22,
+  author    = {Fan Zhang and Yiannis Demiris},
+  title     = {Learning garment manipulation policies toward robot-assisted dressing},
+  journal   = {Sci. Robotics},
+  year      = {2022},
+}
+
+%% first-principles DOO models
+@inproceedings{Terzopoulos87,
+  author    = {Demetri Terzopoulos and
+               John C. Platt and
+               Alan H. Barr and
+               Kurt W. Fleischer},
+  title     = {Elastically deformable models},
+  booktitle = {SIGGRAPH},
+  year      = {1987},
+}
+
+@inproceedings{CJM,
+author = {Ruan, Mengyao and McConachie, Dale and Berenson, Dmitry},
+year = {2018},
+booktitle = {IROS},
+title = {Accounting for Directional Rigidity and Constraints in Control for Manipulation of Deformable Objects without Physical Simulation}
+}
+
+@article{Rods2008,
+  author    = {Mikl{\'{o}}s Bergou and
+               Max Wardetzky and
+               Stephen Robinson and
+               Basile Audoly and
+               Eitan Grinspun},
+  title     = {Discrete elastic rods},
+  journal   = {{ACM} Trans. Graph.},
+  year      = {2008},
+}
+
+%% learned DOO models
+@inproceedings{CFM,
+  author    = {Wilson Yan and
+               Ashwin Vangipuram and
+               Pieter Abbeel and
+               Lerrel Pinto},
+  title     = {Learning Predictive Representations for Deformable Objects Using Contrastive Estimation},
+  booktitle = {CoRL},
+  year      = {2020},
+}
+
+% cloth smoothing
+@inproceedings{HoqueCloth2020,
+  author    = {Ryan Hoque and
+               Daniel Seita and
+               Ashwin Balakrishna and
+               Aditya Ganapathi and
+               Ajay Kumar Tanwani and
+               Nawid Jamali and
+               Katsu Yamane and
+               Soshi Iba and
+               Ken Goldberg},
+  title     = {VisuoSpatial Foresight for Multi-Step, Multi-Task Fabric Manipulation},
+  booktitle = {RSS},
+  year      = {2020}
+}
+
+@inproceedings{ZixuanCloth21,
+  author    = {Xingyu Lin and
+               Yufei Wang and
+               Zixuan Huang and
+               David Held},
+  title     = {Learning Visible Connectivity Dynamics for Cloth Smoothing},
+  booktitle = {CoRL},
+  year      = {2021},
+}
+
+
+% lipshitz
+@article{CraigLipshitz2021,
+author={Knuth, Craig and Chou, Glen and Ozay, Necmiye and Berenson, Dmitry},
+journal={RA-L},
+title={Planning With Learned Dynamics: Probabilistic Guarantees on Safety and Reachability via Lipschitz Constants},
+year={2021},
+}
+
+% sys-id  for deformables
+@inproceedings{gradSim,
+  author    = {J. Krishna Murthy and
+               Miles Macklin and
+               Florian Golemo and
+               Vikram Voleti and
+               Linda Petrini and
+               Martin Weiss and
+               Breandan Considine and
+               J{\'{e}}r{\^{o}}me Parent{-}L{\'{e}}vesque and
+               Kevin Xie and
+               Kenny Erleben and
+               Liam Paull and
+               Florian Shkurti and
+               Derek Nowrouzezahrai and
+               Sanja Fidler},
+  title     = {gradSim: Differentiable simulation for system identification and visuomotor
+               control},
+  booktitle = {ICLR},
+  year      = {2021},
+}
+
+@inproceedings{ZhangSCD21,
+  author    = {Wenbo Zhang and
+               Karl Schmeckpeper and
+               Pratik Chaudhari and
+               Kostas Daniilidis},
+  title     = {Deformable Linear Object Prediction Using Locally Linear Latent Dynamics},
+  booktitle = {ICRA},
+  year      = {2021},
+}
+
+
+% traps
+@article{TAMPC2021,
+author={Sheng Zhong and Zhenyuan Zhang and Nima Fazeli and Dmitry Berenson},
+title={\href{https://arxiv.org/pdf/2010.12516.pdf}{{TAMPC:} {A} Controller for Escaping Traps in Novel Environments}},
+journal={IEEE Robotics and Automation Letters},
+year={2021}
+}
+
+@inproceedings{khatib1985real,
+  title={Real-time obstacle avoidance for manipulators and mobile robots},
+  author={Khatib, Oussama},
+  booktitle={Proceedings. 1985 IEEE International Conference on Robotics and Automation},
+  volume={2},
+  year={1985},
+}
+
+@inproceedings{VirtualObstacles2003,
+  title={Artificial potential field based path planning for mobile robots using a virtual obstacle concept},
+  author={Lee, Min Cheol and Park, Min Gyu},
+  booktitle={Proceedings 2003 IEEE/ASME international conference on advanced intelligent mechatronics (AIM 2003)},
+  volume={2},
+  year={2003},
+}
+
+@article{fedele2018obstacles,
+  title={Obstacles avoidance based on switching potential functions},
+  author={Fedele, Giuseppe and D’Alfonso, Luigi and Chiaravalloti, Francesco and D’Aquila, Gaetano},
+  journal={Journal of Intelligent \& Robotic Systems},
+  year={2018},
+}
+
+@article{burda2018exploration,
+  title={Exploration by random network distillation},
+  author={Burda, Yuri and Edwards, Harrison and Storkey, Amos and Klimov, Oleg},
+  journal={arXiv preprint arXiv:1810.12894},
+  year={2018}
+}
+
+@inproceedings{pathak2017curiosity,
+  title={Curiosity-driven exploration by self-supervised prediction},
+  author={Pathak, Deepak and Agrawal, Pulkit and Efros, Alexei A and Darrell, Trevor},
+  booktitle={International conference on machine learning},
+  pages={2778--2787},
+  year={2017},
+  organization={PMLR}
+}
+
+@article{bellemare2016unifying,
+  title={Unifying count-based exploration and intrinsic motivation},
+  author={Bellemare, Marc and Srinivasan, Sriram and Ostrovski, Georg and Schaul, Tom and Saxton, David and Munos, Remi},
+  journal={Advances in neural information processing systems},
+  year={2016}
+}
+
+@article{osband2016deep,
+  title={Deep exploration via bootstrapped DQN},
+  author={Osband, Ian and Blundell, Charles and Pritzel, Alexander and Van Roy, Benjamin},
+  journal={Advances in neural information processing systems},
+  year={2016}
+}
+
+%% ICRA 24
+%% Knot tying
+@article{WeifuKnots,
+title={Knot grasping, folding, and re-grasping},
+author={Weifu Wang and Devin Balkcom},
+journal={IJRR},
+year={2018}
+}
+
+@article{WakamatsuKnots2005,
+  title={Manipulation Planning for Knotting/Unknotting and Tightly Tying of Deformable Linear Objects},
+  author={Hidefumi Wakamatsu and Akira Tsumaya and Eiji Arai and Shinichi Hirai},
+  journal={ICRA},
+  year={2005},
+}
+
+%% Topology in robotics
+@inproceedings{Bhattacharya11,
+author       = {Subhrajit Bhattacharya and Maxim Likhachev and Vijay Kumar},
+title        = {Identification and Representation of Homotopy Classes of Trajectories for Search-based Path Planning in 3D},
+booktitle    = {RSS},
+year         = {2011}
+}
+
+@article{Bhattacharya12,
+  title={Topological constraints in search-based robot path planning},
+  author={Subhrajit Bhattacharya and Maxim Likhachev and Vijay R. Kumar},
+  journal={Autonomous Robots},
+  year={2012},
+}
+
+@article{PDR_Jaillet,
+author = {Léonard Jaillet and Thierry Simeon},
+title ={Path Deformation Roadmaps: Compact Graphs with Useful Cycles for Motion Planning},
+journal = {IJRR},
+year = {2008},
+}
+
+
+@article{TetherHomotopy,
+author = {Takeo Igarashi and Mike Stilman},
+title = {Homotopic Path Planning on Manifolds for Cabled Mobile Robots},
+journal = {WAFR},
+year={2010}
+}
+
+@article{Zhang2022,
+  title={Learning garment manipulation policies toward robot-assisted dressing},
+  author={Fan Zhang and Y. Demiris},
+  journal={Science Robotics},
+  year={2022},
+}
+
+%% Peter's prior work
+@article{FOCUS2023,
+author={Peter Mitrano and Alex LaGrassa and Oliver Kroemer and Dmitry Berenson},
+title={Focused Adaptation of Dynamics Models for Deformable Object Manipulation},
+journal={ICRA},
+year={2023},
+}
+
+@article{DataAugmentation2022,
+author={Peter Mitrano and Dmitry Berenson},
+title={Data Augmentation for Manipulation},
+journal={RSS},
+year={2022},
+}
+
+%% Other ARMLAb work
+
+@article{TAMPC,
+  author       = {Sheng Zhong and
+                  Zhenyuan Zhang and
+                  Nima Fazeli and
+                  Dmitry Berenson},
+  title        = {{TAMPC:} {A} Controller for Escaping Traps in Novel Environments},
+  journal      = {RA-L},
+  year         = {2021},
+}
+
+@article{Weifu,
+  author={Weifu Wang and Berenson, Dmitry and Balkcom, Devin},
+  title={An online method for tight-tolerance insertion tasks for string and rope}, 
+  journal={ICRA}, 
+  year={2015},
+}
+
+@inproceedings{DiminishingRigidity,
+  author       = {Dmitry Berenson},
+  title        = {Manipulation of deformable objects without modeling and simulating deformation},
+  booktitle    = {{IROS}},
+  year         = {2013}
+}
+
+
+%% MPC
+@article{mppi,
+  author={Williams, Grady and Drews, Paul and Goldfain, Brian and Rehg, James M. and Theodorou, Evangelos A.},
+  journal={ICRA}, 
+  title={Aggressive driving with model predictive path integral control}, 
+  year={2016},
+}
+
+@INPROCEEDINGS{mujoco,
+  author={Todorov, Emanuel and Erez, Tom and Tassa, Yuval},
+  booktitle={IROS}, 
+  title={MuJoCo: A physics engine for model-based control}, 
+  year={2012},
+}
+
+
+%% DLOs
+@article{Saha07,
+  author       = {Mitul Saha and Pekka Isto},
+  title        = {Manipulation Planning for Deformable Linear Objects},
+  journal      = {{IEEE} Trans. Robotics},
+  year         = {2007},
+}
+
+@inproceedings{UntanglingFull,
+  author       = {Priya Sundaresan and
+                  Jennifer Grannen and
+                  Brijen Thananjeyan and
+                  Ashwin Balakrishna and
+                  Jeffrey Ichnowski and
+                  Ellen R. Novoseller and
+                  Minho Hwang and
+                  Michael Laskey and
+                  Joseph Gonzalez and
+                  Ken Goldberg},
+  title        = {Untangling Dense Non-Planar Knots by Learning Manipulation Features and Recovery Policies},
+  booktitle    = {RSS},
+  year         = {2021},
+}
+
+@inproceedings{UntanglingHulk,
+  title={Untangling Dense Knots by Learning Task-Relevant Keypoints},
+  author={Jennifer Grannen and Priya Sundaresan and Brijen Thananjeyan and Jeffrey Ichnowski and Ashwin Balakrishna and Minho Hwang and Vainavi Viswanath and Michael Laskey and Joseph Gonzalez and Ken Goldberg},
+  booktitle={Conference on Robot Learning},
+  year={2020},
+}
+
+% ones below here are not duplicated
+@article{UntanglingDescriptors,
+  title={Learning Rope Manipulation Policies Using Dense Object Descriptors Trained on Synthetic Depth Data},
+  author={Priya Sundaresan and Jennifer Grannen and Brijen Thananjeyan and Ashwin Balakrishna and Michael Laskey and Kevin Stone and Joseph Gonzalez and Ken Goldberg},
+  journal={ICRA},
+  year={2020},
+}
+
+@article{Wakamatsu2006Untangling,
+  title={Manipulation planning for unraveling linear objects},
+  author={Hidefumi Wakamatsu and Akira Tsumaya and Eiji Arai and Shinichi Hirai},
+  journal={ICRA},
+  year={2006},
+}
+
+@article{RitaCableRouting,
+  title={Planning and Control for Cable-routing with Dual-arm Robot},
+  author={Gabriel Arslan Waltersson and Rita Laezza and Yiannis Karayiannidis},
+  journal={ICRA},
+  year={2022},
+}
+
+% Cloth smoothing
+@article{ClothSmoothingWu,
+  title={Learning to Manipulate Deformable Objects without Demonstrations},
+  author={Yilin Wu and Wilson Yan and Thanard Kurutach and Lerrel Pinto and P. Abbeel},
+  journal={ArXiv},
+  year={2019},
+  volume={abs/1910.13439},
+  url={https://api.semanticscholar.org/CorpusID:204950125}
+}
+
+@article{TetheredToolManipulation,
+  title={Tethered Tool Manipulation Planning With Cable Maneuvering},
+  author={Daniel S{\'a}nchez and Weiwei Wan and Kensuke Harada},
+  journal={IEEE Robotics and Automation Letters},
+  year={2019},
+}
+
+% Code
+@article{NetworkX,
+title={Exploring network structure, dynamics, and function using NetworkX},
+author={Aric A. Hagberg and Daniel A. Schult and Pieter J. Swart},
+journal={Python in Science Conference},
+year={2008}
+}
+
+@article{MoveIt,
+author={David Coleman and Ioan A. Șucan and Sachin Chitta and Nikolaus Correll},
+title={Reducing the Barrier to Entry of Complex Robotic Software: a MoveIt! Case Study},
+journal = {Journal of Software Engineering for Robotics},
+year={2014},
+}
+
+
+% grasping
+@article{Simeon04,
+  author       = {Thierry Sim{\'{e}}on and Jean{-}Paul Laumond and Juan Cort{\'{e}}s and Anis Sahbani},
+  title        = {Manipulation Planning with Probabilistic Roadmaps},
+  journal      = {IJRR},
+  year         = {2004},
+}
+
+@inproceedings{DexNet1,
+  author       = {Jeffrey Mahler and
+                  Florian T. Pokorny and
+                  Brian Hou and
+                  Melrose Roderick and
+                  Michael Laskey and
+                  Mathieu Aubry and
+                  Kai Kohlhoff and
+                  Torsten Kr{\"{o}}ger and
+                  James J. Kuffner and
+                  Ken Goldberg},
+  title        = {Dex-Net 1.0: {A} cloud-based network of 3D objects for robust grasp
+                  planning using a Multi-Armed Bandit model with correlated rewards},
+  booktitle    = {{ICRA}},
+  year         = {2016}
+}
+
+@inproceedings{DexNet2,
+  author       = {Jeffrey Mahler and
+                  Jacky Liang and
+                  Sherdil Niyaz and
+                  Michael Laskey and
+                  Richard Doan and
+                  Xinyu Liu and
+                  Juan Aparicio Ojea and
+                  Ken Goldberg},
+  title        = {Dex-Net 2.0: Deep Learning to Plan Robust Grasps with Synthetic Point
+                  Clouds and Analytic Grasp Metrics},
+  booktitle    = {Robotics: Science and Systems},
+  year         = {2017}
+}

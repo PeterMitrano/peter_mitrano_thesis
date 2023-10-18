@@ -1,0 +1,78 @@
+\section{Related Work} \label{Intro:sec:related_work}
+
+In this section, I review recent work related to this thesis. First, I briefly overview related work on robotic manipulation of deformable one-dimensional objects (DOOs), since that is the application focus of this thesis. The next two sections of related work are devoted to the two challenges my work addresses -- unreliable dynamics and data efficiency.
+
+\subsection{Manipulation of Deformable One-dimensional Objects}
+
+This thesis focuses on model-based manipulation planning, so we begin the related work with a discussion of the dynamics models used for DOO manipulation planning.
+
+\subsubsection{Dynamics for DOO manipulation:}
+
+Before considering the dynamics, we first need to discuss the state representation for the DOO. By far the most common representation is a set of points in $\reals^3$, where each point $\points_i$ has an index $i\in[0,N)$, and where the number of points $N$ is chosen a priori and is fixed. However, some works use raw images as their state \cite{Finn2017,Nagabandi2018,Wang2019,nagabandi19learning,Finn2017,HoqueCloth2020}. In addition to the state representation, one must also choose an action representation, such as a delta-position of points that are grasped by the robot \cite{ZixuanCloth21,lin2020softgym,HoqueCloth2020}, delta-poses of the grippers \cite{CJM}, velocities of the grasped points \cite{Propnet}, or forces-torques applies to the object \cite{Rods2008,Lamiraux2001}.
+
+Some dynamics models for DOOs are derived from first-principles \cite{Terzopoulos87,Lamiraux2001,Rods2008}, others are learned directly from data \cite{Finn2017,CFM,OfflineOnline22}, and some are a mix of both \cite{Propnet,li2022graph,holl2020learning}. For image-based prediction or for systems with high-dimensional states or complex dynamics, neural networks are a popular choice \cite{Goldberg1993,Finn2017,Nagabandi2018,Ichter2019,HoqueCloth2020}. These models are often trained on datasets of random actions, using the mean squared prediction error as the training objective.
+
+\subsubsection{Planning for DOO manipulation:}
+
+These dynamics models are then used to create plans for how to manipulate the object using a variety of methods such as A* \cite{Wang2019}, RRT \cite{Ichter2019}, the cross entropy method (CEM) \cite{Hafner2019}, and gradient-based optimization \cite{Srinivas2018}. The choice of planner typically depends on the type of manipulation or the task being performed. For example, MPC methods like CEM or random-shooting are often paired with fast dynamics models for dexterous manipulation, since rapid replanning with inaccurate dynamics can be better than long-horizon planning \cite{Finn2017,NagabandiImageConditiondDynamics2018,Nagabandi2018}. In contrast, if the task requires large motions through regions with narrow passages, then an RRT or A* planner may be preferred.
+
+\subsection{Unreliable Dynamics Models}
+
+In cases where we cannot assume our dynamics models will always be accurate, prior work has proposed several ways of quantifying the reliability of a dynamics model, as well as different ways to use that in planning.
+
+\subsubsection{Quantifying Model Reliability}
+
+In \cite{MDEs22,PatchPlans2020} the error of the dynamics is learned using data coming from the true dynamics. \cite{UnreliableDale2019} proposes training a classifier for model reliability, where the ground-truth label is a combination of thresholding the observed error, and comparing the first-order homotopy of the true versus predicted states. \cite{MDEs22} introduced Model Deviation Estimators (MDE) which estimate a continuous scalar error values, and which we use in this thesis. Another approach is to quantify uncertainty in the dynamics due to lack of data \cite{Lakshminarayanan2017,Chua2018,CraigLipshitz2021}, known as epistemic uncertainty. Intuitively (and sometimes literally) this means evaluating the distance to the training data, and treating states or state-action pairs which are far from any training data as unreliable. Finally, \cite{DaleBandit} proposed another notion of reliability based on the expected reduction in task-error, called utility, rather than the difference in state.
+
+\subsubsection{Using Model Reliability Estimates in Planning}
+
+There are several ways to use estimates of model reliability in planning. \cite{Wang2019} and \cite{Ichter2019} both avoid regions where the learned model may have significant error. With MDEs, avoiding unreliable regions can be done by penalizing the cumulative or final error as predicted by the MDE \cite{MDEs22}, or a binary notion of reliability can be used to reject transitions in an RRT planner \cite{UnreliableDale2019}. A related problem is also addressed in \cite{Vemula2020}, which makes local adjustments in response to inaccurate predictions encountered in execution.
+
+If a dynamics model has a known probabilistic transition model, belief-space planning can be used \cite{kaelbling2013integrated, platt2010belief}. However, meaningful predictive uncertainty distributions are difficult to estimate for novel scenarios, so these methods have not yet been applied to DOO manipulation.
+
+\subsection{Learning Dynamics from Limited Amounts of Data}
+
+The above works focus on quantifying and managing the unreliability of the dynamics model. Various learning techniques have been proposed to try to increase the model's reliability. However, the main limitation for these learning methods is the lack of large and diverse real world datasets. The problem of learning better models from limited data is important for robotics applications and has received significant attention as researchers have tried to apply deep learning to robotics \cite{DisbandOpenAI2021,ReviewKroemer2021}.
+
+\subsubsection{Adapting Dynamics Models}
+
+Given a class of dynamics models which have a few physical parameters, such as spring-mass or FEM models, one approach is to use real world observations to more accurately estimate system parameters (e.g. system-identification or active-learning) \cite{sastry1989adaptive, arndt2021few, evans2022context, nagabandi19learning}. For example, \cite{gradSim} uses system identification for deformable objects. These methods assume that there exists a set of system parameters which explain the observations. They also rely on collecting diverse data which disambiguates related parameters like mass and friction, which makes these methods sensitive to how the data is collected and may require complex data collection setups.
+
+Another approach to improve accuracy is to first pre-train the dynamics on large datasets generated in simulation. Generating large amounts of diverse data is practical in simulation, but the challenge is that simulations may not be accurate to or representative of the real world. This difference has been called the \textit{sim2real gap}, and many sim2real methods have been proposed to address this \cite{sim2realDynamics2018,sim2realDynamics2018,PushSim2021,real2sim2real,sim2real2sim}.
+
+Curriculum learning and transfer learning methods can be used to transfer models trained in simulation to the real world \cite{curriculumBengio09,sorocky2020experience, torrey2010transfer}. Since transfer works best when the difference is small, curriculum learning methods create intermediate problems of increasing difficulty by changing the labels or the task. Curriculum learning has been successful in classification, reinforcement learning, and machine translation \cite{gradualAdaptation20, zhang2017curriculum, zhan2021meta, curriculumDeepRL20}. Prior work has also used estimates of similarity between the source and target system to guide adaptation, for instance by selecting training data most similar to the source system \cite{sorocky2020experience} or selecting the most useful source domain for a given target domain \cite{courchesne2021onassessing}.
+
+Another method is domain randomization, which uses random variations of conditions during training to enable the model to be robust to that type of variance during test time \cite{lowrey2018reinforcement}. Some methods go further, and iteratively refine the noise distribution by comparing simulations to rollouts executed in the real world \cite{chebotar2019closing, langsfeld2018selection}. These methods can be used to adapt a dynamics model learned in one environment to another environment, but they require knowledge of how parameters can vary between the source and the target domains. For example, 
+
+Existing work on adaptation, curriculum learning, and domain randomization can fail in the case where the simulation and real world dynamics differ significantly in some regions but not in others. This is often the case for unreliable dynamics of DOOs, since some regions of state-action space have very difficult to model dynamics (contact with environment, self-contact, knots, etc.), but other regions are simple (free-space). We address this specific kind of adaptation problem in Chapter \ref{chap:FOCUS}.
+
+\subsubsection{Data Augmentation}
+
+One way to make better use of limited data is to use data augmentation. Data augmentation is the process of creating additional training examples by modifying existing ones. Data augmentation has been applied to many machine learning problems, from material science \cite{MaterialsAEOhno2020} to financial modeling \cite{PriceForecastingAE2021} (see \cite{TimeSeriesSurveyIwana2020,NLPSurveyFeng2021,ImageAugSurvey2019} for several surveys). It is especially common in computer vision \cite{ImageAugSurvey2019,BestPractice2003,AutoAugment,RLAugLaskin2020,Augerino2020}, and is also popular in natural language processing \cite{NLPSurveyFeng2021,NLPMa2019}. In these fields the data is often in standardized data types---images, text, or vectors of non-physical features (e.g. prices). Each of the data types can be used for a wide variety of tasks, and various data augmentations have been developed for various pairings of data type and task. 
+
+However, problems in robotic manipulation use other formats of data, such as point clouds or object poses, and may consist of time-series data mixed with time-invariant data. The data augmentation method I propose fills this gap, and is designed specifically for data of the types most prevalent in robotics.
+
+In contrast to engineering augmentations based on prior knowledge, another body of work uses unsupervised generative models to generate augmentations \cite{BayesianDATran2017,MaterialsAEOhno2020,PriceForecastingAE2021}. Typically, these methods train a model like an Auto-Encoder or Generative Adversarial Network (GAN) \cite{GANGoodfellow14}) on the data, encode the input data into the latent space, perturb the data in the latent space, then decode to produce the augmented examples. These methods can be applied to any data type, and handle both regression and classification problems. However, they do not incorporate prior knowledge, and only add small but sophisticated noise. In contrast, we embed prior knowledge about the physical and spatial nature of manipulation, and as a result can produce large and meaningful augmentations, at the cost of being less generally-applicable.
+
+\subsubsection{Other Techniques}
+
+ Although adaptation and data augmentation are popular approaches to make better use of limited data, there are other methods that have been proposed for data-efficient learning, both in general and specifically for robotic manipulation. We highlight a few important ones here, but note that these are all complementary to model adaptation and/or data augmentation.
+
+The most common technique is simply to pick a low-capacity model class, such as linear models or very small neural networks \cite{LinearAlarcon2013,TAMPC2021}. Alternatively, prior work has also developed heuristics/priors specific to robotics \cite{RoboticPriors2015} which can be used as objectives during training. Another extremely useful technique is to engineer the state or action representations to include certain known invariances. For instance, a standard technique in dynamics learning methods is to represent the input positions in a local frame as opposed to a world frame, to encode translation invariance \cite{Propnet,EquivariantTransporter2022,ZhuEquivariant2022}. There are also methods for learning these kinds of invariances \cite{TAMPC2021}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO integrate the RW from the grasp loops paper into the above RW
+\section{Related Work}
+\label{Proposed:sec:related_work}
+
+Here review prior applications of topology to robotics and DOO manipulation, and prior work on grasping DOOs. We highlight how our application of topology and the type and DOO manipulation and grasping we consider differs from this prior work.
+
+\textit{Topology in Motion Planning:}
+Topology and homotopy have been used in path planning for flying and driving robots \cite{Bhattacharya11,Bhattacharya12}, as well as tethered robots \cite{TetherHomotopy}. \cite{TetherHomotopy} operates only in 2D and \cite{PDR_Jaillet} considers an approximation of homotopy for 3D path planning. \cite{Bhattacharya11} introduces a simple-to-compute and exact signature for characterizing the homotopy of 3D paths with respect to 3D obstacles with holes in them, called the h-signature. We build on \cite{Bhattacharya11} to define our \signature{}.
+
+\textit{Manipulation planning for Deformable Objects:}
+Prior work on knot typing and untying has also applied knot theory to DOO manipulation \cite{WakamatsuKnots2005, Wakamatsu2006Untangling, Saha07, WeifuKnots, UntanglingHulk, Sundaresan2020, UntanglingFull}. These methods use planar crossing representations, which projects a curve into a specified plane and counts the sequence and type of crossings. \cite{Saha07} used this method for robotic knot tying, and extended this to tying around obstacles by specifying connections between obstacles and the DOO. However, these methods do not consider how the manipulator effects the topology, and fail in some cases with non-planar obstacles. A method for threading surgical needles was proposed in \cite{Weifu}, but uses floating grippers and does not address planning for the robots' arms or obstacles, and is limited tight-tolerance insertion tasks. \cite{TetheredToolManipulation, UnreliableMitrano2021, UnreliableDale2019, DataAugmentation2022, FOCUS2023} all address manipulation planning for DOOs assuming the grasp is fixed, which is complementary to this work.
+
+\textit{Grasping and Regrasping:}
+With rigid grasping, the challenge is primarily in achieving a stable grasp \cite{DexNet1,DexNet2}. With deformables, the challenge is where to grasp, as studied in cloth smoothing or folding \cite{HoqueCloth2020,ZixuanCloth21,ClothSmoothingWu}. These works use pick-and-place primitives with a single manipulator, which is too restrictive for many tasks. In contrast, we use a dual-arm manipulator and use joint velocities as our action space. In \cite{Zhang2022}, a dual arm manipulator autonomously dresses a mannequin. Their method for grasp planning is based on learned visual models of the garment, and only considers grasps near keypoints such as the elbow or shoulder. The methods in \cite{RitaCableRouting,Nair2017,CFM} plan grasps on the DOO, but they assume the rope is planar (flat on a table), use one manipulator, and do not consider obstacles for the manipulator. \cite{Simeon04} describes a method that produces pick, place, and sliding paths in the configuration space without explicit task planning. However, this method does not address underactuated kinodynamic systems such as DOOs.
