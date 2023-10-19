@@ -9,9 +9,9 @@ For recovery, we use the binary cross entropy loss to measure learning performan
 
 \subsection{Physical Robot Demonstrations}
 \label{Scirob:sec:physical_robot_details}
-To demonstrate the practicality of our method, we designed real-world mockups of domestic and automotive tasks. For dual arm manipulation, we demonstrate three tasks done under the hood of a car, where the robot manipulates hoses and straps. For rope dragging we show an example where the robot retrieves a phone charging cable by sliding it. For clarity and simplicity, we demonstrate only the parts of these tasks where our method applies and forgo the use of sophisticated local controllers to, for example, plug the charging cable into the phone.
+To demonstrate the practicality of our method, we designed real-world mockups of domestic and automotive tasks. For dual arm manipulation, we demonstrate three tasks done under the hood of a car, where the robot manipulates hoses and straps. For rope dragging, we show an example where the robot retrieves a phone charging cable by sliding it. For clarity and simplicity, we demonstrate only the parts of these tasks where our method applies and forgo the use of sophisticated local controllers to, for example, plug the charging cable into the phone.
 
-Perception of deformable objects remains a difficult open problem \cite{Yan2020}, much less in cluttered environments where the object is partially-occluded. Online perception of the object is not within the scope of this paper. To demonstrate our methods despite not having such perception algorithms, we manually constructed the scenes in a simulator and planned our actions there before executing them on the real robot. In future work we will incorporate online perception into our execution pipeline when the appropriate perception algorithms are available.
+Perception of deformable objects remains a difficult open problem \cite{Yan2020}, much less in cluttered environments where the object is partially-occluded. Online perception of the object was not used in this demonstration, is used in future chapters. To demonstrate our methods despite not having such perception algorithms, we manually constructed the scenes in a simulator and planned our actions there before executing them on the real robot.
 
 In both scenes, we re-use the unconstrained dynamics models learned in simulation directly. For rope dragging, we also re-use the classifier and recovery models as-is. For dual arm manipulation however, because a different robot is used, and the scene geometry differs significantly from our simulation, we use classifier and recovery models trained on scenes similar to the one we test on in the real world.  For more information, see the video in our supplemental materials. 
 
@@ -61,15 +61,6 @@ Here we describe our results for using a robot for dual arm manipulation of rope
 
 The task error across 100 trials is shown in Figure \ref{Scirob:fig:figure6}b. Our complete method (\textit{Classifier + Learned Recovery}) reached the goal 84\% of the time with a mean task error of \SI{7.29}{\centi\meter}. This is statistically significantly (p $<0.001$) better than FD, which reached the goal 17.7\% of the time with a mean task error of \SI{20.32}{\centi\meter}, and No Classifier, which reached the goal 47\% of the time with a mean task error of \SI{16.97}{\centi\meter}. We also compare to our method without recovery actions, and to our method with random recovery actions. In this task, recovery actions are critical, and without them our method performs statistically significantly (p $<0.001$) worse with a success rate of 61\% and a mean task error of \SI{14.69}{\centi\meter}. When compared to random recovery actions, which reaches the goal 78\% of the time, our method has similar task error (p $= 0.281$ for the hypothesis that our method outperforms random recovery), however our method needs only a third as many recovery actions to achieve this task error. Over all 100 trials, random recovery used 613 recovery actions whereas our method used only 177. Additional numerical results are shown in Table \ref{Scirob:tab:dual_results}.
 
-\subsection{Physical Robot Demonstrations}
-We demonstrate potential applications of our method on real-world mock-ups of several domestic and automotive tasks. The first set of tasks are performed under the hood of a car, and require the robot to manipulate straps or hoses. These tasks include moving the midpoint of a hose to a specific location (Figure \ref{Scirob:fig:figure2}e), positioning the ends of a wiper fluid hose for installation (Figure \ref{Scirob:fig:figure2}f), and removing lifting straps from an engine (Figure \ref{Scirob:fig:figure2}d).
-
-We also perform the task of fetching a charging cable (Figure \ref{Scirob:fig:figure2}c). In this example, the robot cannot reach the end of the cable directly because it is blocked by an obstacle. Instead, the robot grasps the cable elsewhere, and must drag the end of the cable towards the phone.
-
-Notably, these tasks use several different types of goals described in the state space of the rope and grippers, all of which can be handled by our planner. This is in contrast to policy learning methods \cite{matas2018sim2real,Sundaresan2020,Wu2020} and methods which use goal images \cite{Nair2017,Finn2017,Zhang2019}. More details on how we perform these tasks can be found in Section ``\nameref{Scirob:sec:physical_robot_details}''.
-
-\FloatBarrier
-
 \begin{table}
     \centering
     \begin{tabular}{lllccccc}
@@ -105,3 +96,12 @@ Notably, these tasks use several different types of goals described in the state
     \end{tabular}
     \caption{\label{Scirob:tab:dual_results}Task error statistics for simulated dual arm rope manipulation.}
 \end{table}
+
+\subsection{Physical Robot Demonstrations}
+We demonstrate potential applications of our method on real-world mock-ups of several domestic and automotive tasks. The first set of tasks are performed under the hood of a car, and require the robot to manipulate straps or hoses. These tasks include moving the midpoint of a hose to a specific location (Figure \ref{Scirob:fig:figure2}e), positioning the ends of a wiper fluid hose for installation (Figure \ref{Scirob:fig:figure2}f), and removing lifting straps from an engine (Figure \ref{Scirob:fig:figure2}d).
+
+We also perform the task of fetching a charging cable (Figure \ref{Scirob:fig:figure2}c). In this example, the robot cannot reach the end of the cable directly because it is blocked by an obstacle. Instead, the robot grasps the cable elsewhere, and must drag the end of the cable towards the phone.
+
+Notably, these tasks use several different types of goals described in the state space of the rope and grippers, all of which can be handled by our planner. This is in contrast to policy learning methods \cite{matas2018sim2real,Sundaresan2020,Wu2020} and methods which use goal images \cite{Nair2017,Finn2017,Zhang2019}. More details on how we perform these tasks can be found in Section ``\nameref{Scirob:sec:physical_robot_details}''.
+
+\FloatBarrier
