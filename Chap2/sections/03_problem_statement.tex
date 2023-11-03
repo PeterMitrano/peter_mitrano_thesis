@@ -44,7 +44,7 @@ We note that the MER is conservative in the sense that we only need the final pr
     \label{Scirob:fig:figure3}
 \end{figure}
 
-\subsection{\textit{Recovery}}
+\subsection{Recovery}
 
 With this definition of the MER and the classifier, we also formally define what it means to be stuck, i.e. in need of recovery. This can be written as a function $\recoverydef$ which determines whether a given state, environment pair can be escaped while enforcing the MER: 
 \begin{equation}
@@ -58,6 +58,6 @@ With this definition of the MER and the classifier, we also formally define what
 
 Again, we cannot compute $\recoveryfuncfull$ directly online, as it requires knowing the actual effect of executing actions. Instead, we will use an approximation to this function. Once we know if a state is in need of recovery, we can either launch the planner (if not) or perform recovery actions (if so).
 
-\subsection{\textit{State Definition}}
+\subsection{State Definition}
 
 In this chapter, we focus on rope manipulation tasks with $\NGrippers=1$ or $\NGrippers=2$ grippers; the state of each gripper is a point in $\reals^3$. We assume that the robot end effectors are rigidly attached to the object. The configuration of the rope is a set of $\NLinks$ points in $\reals^{3\NLinks}$. The state $s$ is then a vector of the positions of the gripper(s) and the points along the rope. The dimension of the state space is thus $\Ndim = 3 (\NGrippers + \NLinks )$.
